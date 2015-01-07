@@ -16,22 +16,206 @@
 \usepackage{graphicx}
 \newcommand{\indep}{\rotatebox[origin=c]{90}{$\models$}}
 
-
-\newtheorem{quantumState}{Определение}
-\newtheorem{quantumMeasure}[quantumState]{Определение}
-\newtheorem{quantumHadamard}[quantumState]{Определение}
-\newtheorem{quantumPauli}[quantumState]{Определение}
-
-\newtheorem{lochau}{Теорема}
-
-
 \begin{document}
 
 \title{Вопросы по курсу "Квантовая механика"}
-\author{Попов Никита}
+\author{Н. Попов, М. Славошевский}
 \date{\today}
 \maketitle
 
+\subsection*{Постулаты}
+	\begin{enumerate}
+		\item \textit{Как связаны между собой вектор кет $\ket{\psi}$ и вектор бра $\bra{\psi} $?}
+		\begin{equation}
+			\ket{\psi}=\bra{\psi}^{+}
+		\end{equation}	
+	\item \textit{Задано скалярное произведение двух векторов состояния $C =\braket{\varphi | \psi}$. Чему равно $\braket{\psi | \varphi}$?}
+	\begin{equation}
+		\braket{\psi|\phi}=C^{*}
+	\end{equation}
+	
+	\item \textit{Пусть $\braket{\psi_1 | \psi_2} = 0$. Какой смысл имеют коэффициенты $c_1$ и $c_2$ в суперпозиции $\ket{\psi} = c_1 \ket{\psi_1} + c_2 \ket{\psi_2} $?}
+	\begin{equation}
+		c_{i}=\braket{\psi_{i}|\psi}
+	\end{equation}
+	\item \textit{Задан вектор состояния в виде суперпозиции двух состояний $\ket{\psi} = c_1 \ket{\psi_1} + c_2 \ket{\psi_2}$. Как
+определяется вектор бра $\bra{\psi}$?}
+	\begin{equation}
+		\bra{\psi}=c_{1}^{*}\bra{\psi_{1}}+c_{2}^{*}\bra{\psi_{2}}
+	\end{equation}
+	\item \textit{Задан оператор физической величины $\hat{f}$. Как определяется наблюдаемая (физическая величина) квантовой системы, находящейся в состоянии $\ket{\psi}$?
+}	
+	\begin{equation}
+		f=\bra{\psi}\hat{f}\ket{\psi}
+	\end{equation}
+	
+	\end{enumerate}
 
+\subsection*{Уравнение Шредингера}
+\begin{enumerate}
+	\item \textit{Записать уравнение, которому подчиняется вектор состояния квантовой системы.} 
+	\begin{gather}
+			i \hbar \frac{\partial \ket{\psi (t)}}{\partial t} = \hat{H} \ket{\psi (t)} \label{shrodingerEquation}\\
+		\ket{\psi(0)} = \ket{\psi_0}
+	\end{gather}
+	где $\hat{H}$ - гамильтониан системы, $\ket{\psi_0}$ - начальное состояние.
+	
+	\item \textit{Записать стационарное уравнение Шредингера. Какой вид имеет оператор Гамильтона в общем случае?}
+	
+	Пусть собственные состояния оператора $\hat{H}$ задают базис пространства состояний, тогда любое состояние можно разложить по этому базису:
+	\begin{equation}
+		\ket{\psi(t)} = \sum\limits_n c_n (t) \ket{n}
+	\end{equation}
+	Так как $\hat{H}\ket{n} = E_n \ket{n}$, то уравнение Шредингера перепишется в следующем виде:
+	\begin{equation}
+		\sum\limits_n \Big(i\hbar \frac{\partial c_n(t)}{\partial t} - c_n(t) E_n \Big) \ket{n} = 0
+	\end{equation}
+	Так как собственные вектора образуют базис, то в уравнении Шредингера все коэффициенты равны нулю, откуда получаем искомое состояние:
+	\begin{equation}
+		\ket{\psi(t)} = \sum\limits_n c_n^{(0)} e^{-\frac{i}{\hbar} E_n t} \ket{n}
+	\end{equation}
+	Уравнение, из которого определяются собственные состояния оператора Гамильтона, называется \textit{стационарное уравнение Шредингера}:
+	\begin{equation}
+		\hat{H} \ket{\psi} = E \ket{\psi}
+	\end{equation}
+	Для консервативной системы оператор Гамильтона имеет вид\footnote{В общем случае это не всегда верно. Из теоретической механики известно, что гамильтониан системы выражается через кинетическую и потенциальную энергию следующим образом:
+	\begin{equation}
+		H = T_2 + U - T_0 \label{trueHamultonian}
+	\end{equation}
+	где $T_2$ - квадратичная по скорости часть кинетической энергии, $T_0$ - не зависящая от скорость часть. Если же $\frac{\partial \textbf{r}}{\partial t} = 0$, то формула~\eqref{trueHamultonian} переходит в формулу~\eqref{falseHamultonian}
+	}:
+	\begin{equation}
+		\hat{H} = \hat{T} + \hat{U} \label{falseHamultonian}
+	\end{equation}
+	где $\hat{T}$ - оператор кинетической энергии системы, $\hat{U}$ - потенциальной.
+	\item \textit{Записать волновую функцию свободной нерелятивистской частицы.}
+	
+	Гамильтониан свободной нерелятивистской частицы имеет вид
+	\begin{equation}
+		\hat{H} = \frac{\textbf{p}^2}{2m} = -\frac{\hbar^2}{2m} \Delta
+	\end{equation}
+	в координатном представлении. Из линейности лапласиана следует, что решение стационарного уравнения можно искать в виде $\Psi(\textbf{r}) = \psi_x(x) \psi_y(y) \psi_z(z)$. Подставим такую волновую функцию:
+	\begin{equation}
+		\frac{d^2 \psi_x(x)}{d x^2}\psi_y(y)\psi_z(z) + \psi_x(x)\frac{d^2 \psi_y(y)}{d y^2}\psi_z(z) + \psi_x(x)\psi_y(y)\frac{d^2 \psi_z(z)}{d z^2} = -\frac{2mE}{\hbar^2} \psi_x(x)\psi_y(y)\psi_z(z) \label{freeParticle}
+	\end{equation}
+	Поделим равенство~\eqref{freeParticle} на волновую функцию:
+	\begin{equation}
+		\frac{d^2 \psi_x(x)}{d x^2} \frac{1}{\psi_x(x)} + \frac{d^2 \psi_y(y)}{d y^2} \frac{1}{\psi_y(y)} + \frac{d^2 \psi_z(z)}{d z^2} \frac{1}{\psi_z(z)} = -\frac{2mE}{\hbar^2}
+	\end{equation}
+	Получилась сумма функций, каждая из которой зависит от отдной из пространственных переменных, причем их сумма равна константе. Следовательно, каждая из этох функций постоянна. Из физических соображений очевидно, что кинетическая энергия частицы не может быть отрицательной. Обозначим $k_\alpha^2 =\frac{2m E_\alpha}{\hbar^2}, E = E_x + E_y + E_z$:
+	\begin{equation}
+		\psi_\alpha''(\alpha) + k^2_\alpha \psi_\alpha(\alpha) = 0
+	\end{equation}
+	Решением этого уравнения является
+	\begin{equation}
+		\psi_\alpha(\alpha) = C_1 e^{i k_\alpha \alpha} + C_2 e^{-i k_\alpha \alpha}
+	\end{equation}
+	Физический смысл каждой из двух функций в том, что первая описывает движение частицы в $+\infty$, а вторая - в противоположном направлении. Полная волновая функция $\Psi(\textbf{r})$ равна:
+	\begin{equation}
+		\Psi(\textbf{r}) = C_1 e^{i\textbf{kr}} + C_2 e^{-i\textbf{kr}}
+	\end{equation}
+	
+	\item \textit{Как с помощью оператора эволюции записать решение уравнения Шредингера в произвольный момент времени, если задано начальное условие $\Psi(\textbf{r}, 0) = \psi_0(\textbf{r}) $?}
+	
+	От дифференциального вида уравнения Шредингера можно перейти к интегральному:
+	\begin{equation}
+		\Psi(\textbf{r}, t) = \psi_0(\textbf{r}) - \frac{i}{\hbar} \int\limits_0^t \hat{H} \Psi(\textbf{r}, \tau) d\tau
+	\end{equation}
+	Пусть гамильтониан системы не зависит от времени. Будем решать уравнение методом последовательных приближений. Пусть $\Psi^{(0)}(\textbf{r}, t) = \psi_0 (\textbf{r})$, тогда
+	\begin{equation}
+		\Psi^{(1)}(\textbf{r}, t) = \psi_0 (\textbf{r}) - \frac{it\hat{H} }{\hbar} \psi_0 (\textbf{r})
+	\end{equation}
+	Повторяя приближение бесконечное число раз, в пределе получим:
+	\begin{equation}
+		\Psi(\textbf{r}, t) = \sum\limits_{n=0}^\infty  \Big(\frac{-it\hat{H} }{\hbar} \Big)^n \psi_0 (\textbf{r}) = e^{\frac{-it\hat{H} }{\hbar}} \psi_0 (\textbf{r}) = \hat{U}(t) \psi_0 (\textbf{r})
+	\end{equation}
+	где введен оператор эволюции $\hat{U}(t) = e^{\frac{-it\hat{H} }{\hbar}}$
+	
+	\item \textit{
+	 Какой вид имеет оператор эволюции консервативной системы?
+	}
+	\begin{equation}
+		\hat{U}(t) = e^{\frac{-it\hat{H} }{\hbar}}
+	\end{equation}
+	
+	\item \textit{
+	Записать определение производной оператора по времени.
+	}
+	
+	Производной физической величины можно сопоставить производную оператора, который задает эту величину. Найдем его явный вид:
+	\begin{equation}
+		\frac{df}{dt} = \frac{d}{dt} \braket{\psi(t) | \hat{f} | \psi(t)} = \frac{d}{dt} \braket{\psi_0 |\hat{U}^+ \hat{f} \hat{U} | \psi_0} = \bra{\psi_0} \frac{\partial \hat{U}^+}{\partial t} \hat{f} \hat{U} + \hat{U}^+\frac{\partial \hat{f}}{\partial t} \hat{U} + \hat{U}^+ \hat{f}\frac{\partial \hat{U}}{\partial t} \ket{\psi_0} \label{derivativeFirst}
+	\end{equation}
+	По определению оператора эволюции его производная равна
+	\begin{equation}
+		\frac{\partial U}{\partial t} = -\frac{i}{\hbar} \hat{H} \hat{U}
+	\end{equation}
+	Тогда равенство~\eqref{derivativeFirst} можно продолжить:
+	\begin{equation}
+		\frac{df}{dt} = \bra{\psi_0} \hat{U}^+ \Big( \frac{\partial \hat{f}}{\partial t} + \frac{i}{\hbar} \big( \hat{H} \hat{f} - \hat{f} \hat{H} \big) \Big)\hat{U}\ket{\psi_0} = \bra{\psi(t)}\frac{\partial \hat{f}}{\partial t} + \frac{i}{\hbar} \Big[ \hat{H}, \hat{f}\Big] \ket{\psi(t)}
+	\end{equation}
+	где квадратные скобки обзначают \textit{коммутатор} двух операторов. Оператор, который находится между векторами бра и кет, по определению называют \textit{производной оператора по времени}:
+	\begin{equation}
+	\frac{d\hat{f}}{dt} = \frac{\partial \hat{f}}{\partial t} + \frac{i}{\hbar} \Big[ \hat{H}, \hat{f}\Big] \label{derivativeLast}
+	\end{equation}
+	\item \textit{
+	Как определяется коммутатор двух операторов?	
+	}
+	\begin{equation}
+		\Big[ \hat{A}, \hat{B} \Big] = \hat{A} \hat{B} - \hat{B} \hat{A}
+	\end{equation}
+	\item \textit{
+ Какому условию удовлетворяют операторы физических величин–интегралов движения в квантовой механике?	
+	}
+	
+	Интеграл движения - величина, сохранающаяся с течением времени. Так как мы знаем оператор, который сопоставляется производной физической величины (формула~\eqref{derivativeLast}), то для интегралов движения этот оператор должен равняться нулю:
+	\begin{equation}
+		\frac{\partial \hat{f}}{\partial t} + \frac{i}{\hbar} \Big[ \hat{H}, \hat{f}\Big] = 0
+	\end{equation}
+	\item \textit{
+	Какие физические величины могут быть включены в полный набор физических величин, определяющих состояние квантовой системы?	
+	}
+	
+	Полный набор физических величин - это такой набор величин, что каждому уникальному набору значений этих величин соответствует вектор состояния из базиса пространства состояний. Другими словами, это тот набор величин, по которому можно построить базис в пространстве состояний рассматриваемой системы. Так как для решения уравнения Шредингера~\eqref{shrodingerEquation} состояние раскладывают по собственным векторам оператора Гамильтона, то обычно в полный набор включают энергию системы. Однако не всегда энергетический спектр задает базис, то есть одному значению энергии соответствует несколько базисных векторов. Однако для двух коммутирующих операторов можно выбрать общий базис собственных функций. Поэтому в полный набор физических величин можно включать величины, которые коммутируют с оператором Гамильтона.
+	
+	\item \textit{
+		Как можно представить коммутатор $\Big[ \hat{A} \hat{B}, \hat{C}\Big]$?	
+	}
+	
+	\begin{equation}
+		\Big[ \hat{A} \hat{B}, \hat{C}\Big] = \hat{A}\hat{B}\hat{C} - \hat{C}\hat{A}\hat{B} \pm \hat{A} \hat{C} \hat{B} = \hat{A}(\hat{B}\hat{C} - \hat{C} \hat{B}) + (\hat{A}\hat{C} - \hat{C} \hat{A}) \hat{B} = \hat{A}\Big[ \hat{B}, \hat{C}\Big] + \Big[ \hat{A}, \hat{C}\Big] \hat{B}
+	\end{equation}
+	
+	\item \textit{Определить полный набор физических величин свободной бесспиновой частицы.}
+
+\end{enumerate}
+
+\subsection*{Момент}
+	\begin{enumerate}
+		\item \textit{Выразить $\hat{\textbf{l}}^2$ через $\hat{l}_z$ и $\hat{l}_\pm$.}	
+		\begin{equation}
+			\hat{\boldsymbol{l^{2}}}=\hat{l_{z}^{2}}+\frac{1}{2}(\hat{l_{+}}\hat{l_{-}}+\hat{l_{-}}\hat{l_{+}})=\hat{l_{z}}^{2}+\hat{l_{z}}+\hat{l_{-}}\hat{l_{+}}=\hat{l_{z}}^{2}-\hat{l_{z}}+\hat{l_{+}}\hat{l_{-}}
+		\end{equation}
+		\item \textit{$\hat{\textbf{l}}^2 \ket{l, m} = \ ?$}
+		\begin{equation}
+			\hat{\boldsymbol{l}}^2\ket{l,m}=l(l+1)\ket{l,m}
+		\end{equation}			
+		\item \textit{$\hat{l}_z \ket{l, m} = \ ?$}
+		\begin{equation}
+			\hat{l}_z\ket{l,m}=m\ket{l,m}
+		\end{equation}	
+		\item \textit{$\hat{l}_+ \ket{l, l} = \ ?$}
+		\begin{equation}
+			\hat{l}_+\ket{l,l}=0
+		\end{equation}	
+		\item \textit{$\hat{l}_- \ket{l, -l} = \ ?$}
+		\begin{equation}
+			\hat{l}_-\ket{l,-l}=0
+		\end{equation}		
+		\item \textit{$\hat{l}_\pm \ket{l, m} = \ ?$}
+		\begin{equation}
+			\hat{l}_\pm\ket{l,m}=\sqrt{(l\mp m)(l\pm m-1)}\ket{l,m\pm1}
+		\end{equation}	
+	\end{enumerate}
 
 \end{document}
