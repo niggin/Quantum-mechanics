@@ -64,7 +64,7 @@
 	
 	Пусть собственные состояния оператора $\hat{H}$ задают базис пространства состояний, тогда любое состояние можно разложить по этому базису:
 	\begin{equation}
-		\ket{\psi(t)} = \sum\limits_n c_n (t) \ket{n}
+		\ket{\psi(t)} = \sum\limits_n c_n (t) \ket{n} \label{basisDecomposition}
 	\end{equation}
 	Так как $\hat{H}\ket{n} = E_n \ket{n}$, то уравнение Шредингера перепишется в следующем виде:
 	\begin{equation}
@@ -183,11 +183,142 @@
 	}
 	
 	\begin{equation}
-		\Big[ \hat{A} \hat{B}, \hat{C}\Big] = \hat{A}\hat{B}\hat{C} - \hat{C}\hat{A}\hat{B} \pm \hat{A} \hat{C} \hat{B} = \hat{A}(\hat{B}\hat{C} - \hat{C} \hat{B}) + (\hat{A}\hat{C} - \hat{C} \hat{A}) \hat{B} = \hat{A}\Big[ \hat{B}, \hat{C}\Big] + \Big[ \hat{A}, \hat{C}\Big] \hat{B}
+		\Big[ \hat{A} \hat{B}, \hat{C}\Big] = \hat{A}\hat{B}\hat{C} - \hat{C}\hat{A}\hat{B} \pm \hat{A} \hat{C} \hat{B} = \hat{A}(\hat{B}\hat{C} - \hat{C} \hat{B}) + (\hat{A}\hat{C} - \hat{C} \hat{A}) \hat{B} = \hat{A}\Big[ \hat{B}, \hat{C}\Big] + \Big[ \hat{A}, \hat{C}\Big] \hat{B} \label{abc}
 	\end{equation}
 	
 	\item \textit{Определить полный набор физических величин свободной бесспиновой частицы.}
 
+\end{enumerate}
+
+\subsection*{Операторы и теория представлений}
+
+\begin{enumerate}
+	\item \textit{Чему равен (“табличный”) коммутатор $\big[\hat{x}_\alpha, \hat{p}_\beta \big]$?}
+	
+	Коммутаторы операторов физических величин постулируются - для двух физических случайных величин коммутатор пропорционален скобке Пуассона этих двух величин, в которых физические величины заменены на их операторы:
+	\begin{equation}
+		\Big\{ f, g \Big\} \rightarrow -\frac{i}{\hbar} \Big[\hat{f}, \hat{g}\Big]
+	\end{equation}
+	По определению, скобка Пуассона равна:
+	\begin{equation}
+		\Big\{ f, g \Big\} = \sum\limits_n \frac{\partial f}{\partial q_n} \frac{\partial g}{\partial p_n} - \frac{\partial f}{\partial p_n} \frac{\partial g}{\partial q_n}
+	\end{equation}
+	где $q_n, p_n$ - обобщенные координатв и импульс соответственно. Для самих координаты и импульса скобка Пуассона равна:
+	\begin{equation}
+		\Big\{ x_\alpha, p_\beta \Big\} = \delta_{\alpha \beta}
+	\end{equation}
+	и, следовательно коммутатор их операторов равен:
+	\begin{equation}
+		\big[\hat{x}_\alpha, \hat{p}_\beta \big] = i\hbar \delta_{\alpha\beta}
+	\end{equation}
+	
+	\item \textit{Зная табличный коммутатор операторов координаты и импульса, определить оператор скорости нерелятивистской частицы.}
+	
+	Воспользуемся определением производной оператора по времени:
+	\begin{equation}
+		\hat{\textbf{v}} = \frac{d \textbf{r}}{dt} = \frac{\partial \textbf{r}}{\partial t} + \frac{i}{\hbar} \Big[ \hat{H}, \hat{\textbf{r}} \Big]
+	\end{equation}
+	Так как потенциальная энергия является функцией координаты, то её оператор коммутирует с оператором координаты. Посчитаем коммутатор оператора кинетической энергии с оператором координаты:
+	\begin{equation}
+		\Big[ \hat{T}, \hat{\textbf{r}} \Big] = \frac{1}{2m} \Big[ \hat{\textbf{p}}^2, \hat{\textbf{r}} \Big] \stackrel{~\eqref{abc}}{=} \frac{1}{2m} \Big(\hat{p}_\alpha \Big[\hat{p}_\alpha, \hat{\textbf{r}}\Big] + \Big[\hat{p}_\alpha, \hat{\textbf{r}}\Big]\hat{p}_\alpha \Big) = -\frac{i\hbar\hat{\textbf{p}}}{m}
+	\end{equation}
+	И тогда оператор скорости, как и в классическом случае, равен
+	\begin{equation}
+		\hat{\textbf{v}} = \frac{\hat{\textbf{p}}}{m}
+	\end{equation}
+	\item \textit{Как можно записать оператор, соответствующий физической величине \textbf{pr}?}
+	
+	Физическим величинам соответствуют эрмитовые операторы. Попробуем сопоставить величине $\varphi = p_\alpha x_\alpha$ оператор напрямую, и посчитаем эрмитово сопряженный оператор $\hat{\varphi}^+$:
+	\begin{equation}
+		\varphi^+ = (\hat{p}_\alpha \hat{x}_\alpha)^+ = \hat{x}_\alpha \hat{p}_\alpha = \hat{p}_\alpha \hat{x}_\alpha + \big[\hat{p}_\alpha, \hat{x}_\alpha \big] = \hat{p}_\alpha \hat{x}_\alpha - i\hbar \delta_{\alpha\alpha} = \hat{p}_\alpha \hat{x}_\alpha - 3i\hbar
+	\end{equation}
+	Как видно, напрямую сопоставленный оператор неэрмитов; однако, если взять оператор $\hat{\varphi} = \hat{p}_\alpha \hat{x}_\alpha - \frac{3}{2}i\hbar$, то такой оператор является эрмитовым. При переходе к классической механике ($\hbar \to 0$) введенный оператор переходит в величину $\varphi$, следовательно, введенный таким образом оператор соответствует заданной величине.
+	
+	\item \textit{Что определяет выражение }$\braket{\textbf{r}|\Psi}$\textit{ = ?}
+	
+	Функция $\psi(\textbf{r}) = \braket{\textbf{r}|\Psi}$ (которую называют \textit{волновой функцией}) является проекцией состояния $\ket{\Psi}$ на базис собственных состояний оператора $\hat{\textbf{r}}$; другими словами, это состояние $\ket{\psi}$ в координатном представлении. Квадрат модуля этой функции есть плотность вероятности того, что частица находится в точке $\textbf{r}$.
+	
+	\item \textit{Для оператора координаты $\hat{\textbf{r} } \ket{\textbf{r}_0} = \ ?$}
+	
+	По определению, состояние $\ket{\textbf{r}_0}$ - состояние с определенной координатой, то есть это собственное состояние оператора $\hat{\textbf{r}}$. Следовательно,
+	\begin{equation}
+		\hat{\textbf{r}}\ket{\textbf{r}_0} = \textbf{r}_0 \ket{\textbf{r}_0}
+	\end{equation}
+	
+	\item \textit{Для оператора импульса  $\hat{\textbf{p} } \ket{\textbf{p}_0} = \ ?$}
+	Аналогично оператору координаты:
+	\begin{equation}
+		\hat{\textbf{p}}\ket{\textbf{p}_0} = \textbf{p}_0 \ket{\textbf{p}_0}
+	\end{equation}
+	
+	\item \textit{Пусть совокупность векторов $\ket{n}$ -составляет базис. Чему равен оператор $\sum\limits_n \ket{n}\bra{n} = \ ?$}
+	
+	Так как вектора $\ket{n}$ состовляют базис, то любое состояние можно разложить по этому базису (смотри, например, формулу~\eqref{basisDecomposition}). Посмотрим, как этот оператор действует на произвольное состояние:
+	\begin{equation}
+		\sum\limits_n \big(\ket{n}\bra{n}\big) \ket{\psi} = \sum\limits_{n, n'} \big(\ket{n}\bra{n}\big) c_{n'}\ket{n'} = \sum\limits_{n, n'} c_{n'}\ket{n}\braket{n|n'} = \sum\limits_{n, n'} c_{n'}\ket{n}\delta_{nn'} = \sum\limits_{n,} c_{n}\ket{n} = \ket{\psi}
+	\end{equation}
+	то есть оператор не меняет произвольное состояние. Значит, этот оператор равен тождественному оператору $\hat{1}$.
+	
+	\item \textit{Для некоторого (не обязательно эрмитова) оператора $\hat{f}\ket{f_n} = f_n\ket{f_n}$, чему равно $\bra{f_n}\hat{f} = \ ?$}
+	
+	Пусть $\bra{f_n}\hat{f} = \bra{\psi}$, спроецируем $\bra{\psi}$ на базисные вектора $\bra{f_{n'}}$:
+	\begin{equation}
+		\braket{\psi|f_{n'}} = \braket{f_n|\hat{f}|f_{n'}} = f_{n'} \braket{f_n|f_{n'}} = f_{n'} \delta_{nn'}
+	\end{equation}
+	то есть проекции на вектора, отличные от $\bra{f_n}$, равны нулю. Значит, $\bra{\psi} = f_n\bra{f_n}$
+	
+	\item \textit{Пусть $\hat{f}^+=\hat{f}$, а $\hat{f}\ket{f_n} = f_n \ket{f_n}$, чему равен оператор $\sum\limits_n \ket{f_n}\bra{f_n} = \ ?$}
+	
+	У эрмитового оператора всегда существует базис из собственных векторов, следовательно, оператор равен тождетвенному (смотри вопрос 7).
+	
+	\item $\braket{\textbf{r}'|\hat{\textbf{r}}|\textbf{r}} = \ ?$
+	\begin{equation}
+		\braket{\textbf{r}'|\hat{\textbf{r}}|\textbf{r}} = \textbf{r} \braket{\textbf{r}'|\textbf{r}} =\textbf{r} \delta(\textbf{r}' - \textbf{r})
+	\end{equation}
+	где $\delta(\textbf{r})$ - дельта-функция Дирака.
+	
+	\item $\braket{\textbf{r}|\textbf{p}} = \ ?$
+	
+	Это значение есть ни что иное, как волновая функция состояния с определенным импульсом. Задача решается при помощи некоторого искусственого приема. Введем оператор
+	\begin{equation}
+		\hat{Q}_{\textbf{a}} = e^{-\frac{i}{\hbar}\textbf{a}\hat{\textbf{p}}}
+	\end{equation}
+	Этот оператор является функцией оператора координаты. Нам нужно вычислить его коммутатор с оператором координаты. Для этого вычислим коммутатор $\big[\hat{x}_\alpha,\hat{p}_\alpha^l \big]$ при помощи скобок Пуассона:
+	\begin{equation}
+		\Big\{x, p_x \Big\} = \frac{\partial x}{\partial x} \frac{\partial p_x^l}{\partial p_x} = \frac{\partial p_x^l}{\partial p_x}
+	\end{equation}
+	Следовательно, коммутатор $\big[\hat{x}_\alpha,\hat{p}_\alpha^l \big]$ равен:
+	\begin{equation}
+		\big[\hat{x}_\alpha,\hat{p}_\alpha^l \big] = i\hbar \frac{\partial \hat{\textbf{p}}^l}{\partial \hat{\textbf{p}}}
+	\end{equation}
+	И коммутатор $\hat{Q}_\textbf{a}$ с оператором координаты, по определению функции от оператора, равен
+	\begin{equation}
+		\Big[\hat{\textbf{r}},\hat{Q}_\textbf{a} \Big] = i\hbar \frac{\partial \hat{Q}_\textbf{a}}{\partial \hat{\textbf{p}}} = \textbf{a}\hat{Q}_\textbf{a}
+	\end{equation}
+	Теперь подействуем оператором $\hat{\textbf{r}}\hat{Q}_\textbf{a}$ на состояние с определенной координатой:
+	\begin{equation}
+		\hat{\textbf{r}}\hat{Q}_\textbf{a} \ket{\textbf{r}_0} = \Big(\hat{Q}_\textbf{a}\hat{\textbf{r}} + \hat{\textbf{a}}\hat{Q}_\textbf{a}\Big)\ket{\textbf{r}_0} = (\textbf{r}_0 + \textbf{a})\hat{Q}_\textbf{a} \ket{\textbf{r}_0}
+	\end{equation}
+	То есть вектор $\hat{Q}_\textbf{a} \ket{\textbf{r}_0}$ есть собственный вектор оператора координаты. Очевидно, что если взять в качестве вектора $\textbf{a}$ необходимую координату, и действовать на состояние с нулевой координатой, то мы получим состояние с необходимой координатой. Следовательно, оператор $\hat{Q}_\textbf{a}$ есть оператор трансляции. Аналогичным образом можно определить оператор трансляции $\hat{P}_\textbf{k}$ для импульсного представления. Тогда
+	\begin{equation}
+		\braket{\textbf{r}|\textbf{p}} = \braket{\textbf{r}|\hat{P}_\textbf{p}|0}_p = e^{-\frac{i}{\hbar}\textbf{pr}} \braket{\textbf{r}|0}_p = {e^{-\frac{i}{\hbar}\textbf{pr}}}_r \braket{0|\hat{Q}_\textbf{r}^+|0}_p = {e^{-\frac{i}{\hbar}\textbf{pr}}}_r \braket{0|0}_p \label{rp}
+	\end{equation}
+	Остается только определить константу $_r\braket{0|0}_p$. Для этого можно сделать следующее:
+	\begin{equation}
+		\braket{\textbf{p}|\textbf{p}'} = \delta(\textbf{p} - \textbf{p}') = \int d\textbf{r} \braket{\textbf{p}|\textbf{r}}\braket{\textbf{r}|\textbf{p}'}
+	\end{equation}
+	Подставляя в интеграл значение~\eqref{rp}, получаем:
+	\begin{equation}
+		|_r\braket{0|0}_p|^2 \int d\textbf{r} e^{\frac{i}{h}(\textbf{p}' - \textbf{p})\textbf{r}} = \delta(\textbf{p} - \textbf{p}')
+	\end{equation}
+	Интеграл в равенстве пропорционален дельта-функции, значит, искомый коэффициент равен:
+	\begin{equation}
+		|_r\braket{0|0}_p|^2 = (2\pi\hbar)^{-3}
+	\end{equation}
+	Тогда искомое выражение равно:
+	\begin{equation}
+		\braket{\textbf{r}|\textbf{p}} = \frac{1}{(2\pi\hbar)^{\frac{3}{2}}} e^{\frac{i}{\hbar}\textbf{pr}}
+	\end{equation}
 \end{enumerate}
 
 \subsection*{Момент}
