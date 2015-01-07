@@ -319,6 +319,110 @@
 	\begin{equation}
 		\braket{\textbf{r}|\textbf{p}} = \frac{1}{(2\pi\hbar)^{\frac{3}{2}}} e^{\frac{i}{\hbar}\textbf{pr}}
 	\end{equation}
+	
+	\item $\braket{\textbf{p}|\textbf{r}} = \ ?$
+		
+	По определению,
+	\begin{equation}
+		\braket{\textbf{p}|\textbf{r}} = (\braket{\textbf{r}|\textbf{p}})^* = \frac{1}{(2\pi\hbar)^{\frac{3}{2}}} e^{-\frac{i}{\hbar}\textbf{pr}}
+	\end{equation}
+	
+	\item \textit{Записать волновую функцию свободной нерелятивистской частицы.}
+	
+	Смотри вопрос №3 раздела "Уравнение Шредингера"
+	\item $\braket{\textbf{r}'|\textbf{r}} = \ ?$
+	
+	Векторы $\ket{\textbf{r}}$ - базисные вектора, нормированные на дельта-функцию:
+	\begin{equation}
+		\braket{\textbf{r}'|\textbf{r}} = \delta(\textbf{r}' - \textbf{r})
+	\end{equation}
+	
+	\item $\braket{\textbf{p}'|\textbf{p}} = \ ?$
+	
+	Аналогично состояниям с определенной координатой:
+	\begin{equation}
+		\braket{\textbf{p}'|\textbf{p}} = \delta(\textbf{p}' - \textbf{p})	
+	\end{equation}
+	
+	\item \textit{Записать уравнение Шредингера для частицы с массой $m$ в координатном представлении.}
+	
+	Для того, чтобы перейти в координатное представление, нам нужно выяснить, как действуют операторы координаты и импульса на волновую функцию. Рассмотрим действие оператора координаты: пусть $\ket{\varphi} = \hat{\textbf{r}}\psi$, тогда
+	\begin{equation}
+		\braket{\textbf{r}|\varphi} = \braket{\textbf{r}|\hat{\textbf{r}}|\psi} = \braket{\textbf{r}|\hat{\textbf{r}}\hat{1}|\psi} = \int d\textbf{r}' \braket{\textbf{r}|\hat{\textbf{r}}|\textbf{r}'} \braket{\textbf{r}'|\psi} = \int d\textbf{r}' \textbf{r}' \delta(\textbf{r} - \textbf{r}') \psi(\textbf{r}') = \textbf{r}\psi(\textbf{r})
+	\end{equation}
+	Таким образом, действие оператора координаты на волновую функцию аналогично действию оператора координаты на состояние:
+	\begin{equation}
+		\hat{\textbf{r}}\psi(\textbf{r}) = \textbf{r} \psi(\textbf{r})
+	\end{equation}
+	Теперь выясним действие оператора импульса на волновую функцию. Пусть $\ket{\phi} = \hat{\textbf{p}}\ket{\psi}$. Тогда
+	\begin{equation}
+		\braket{\textbf{r}|\phi} = \braket{\textbf{r}|\hat{\textbf{p}}\hat{1}|\psi} = \int d\textbf{r}' \braket{\textbf{r}|\hat{\textbf{p}}|\textbf{r}'} \psi(\textbf{r}') \label{imulseFirst}
+	\end{equation}
+	Найдем матричный элемент оператора $\hat{\textbf{p}}$ в координатном предствалении:
+	\begin{equation}
+	\begin{split}
+		\braket{\textbf{r}|\hat{\textbf{p}}|\textbf{r}'} = \braket{\textbf{r}|\hat{1}\hat{\textbf{p}}\hat{1}|\textbf{r}'} = \int d\textbf{p}d\textbf{p}'\braket{\textbf{r}|\textbf{p}} \braket{\textbf{p}|\hat{\textbf{p}}|\textbf{p}'} \braket{\textbf{p}'|\textbf{r}'} = \int d\textbf{p} \textbf{p} \braket{\textbf{r}|\textbf{p}} \braket{\textbf{p}|\textbf{r}'} =\\= \frac{1}{(2\pi\hbar)^3} \int d\textbf{p} \textbf{p} e^{\frac{i}{\hbar}\textbf{p}(\textbf{r} - \textbf{r}')} = i\hbar \frac{\partial}{\partial \textbf{r}'}\Big(\frac{1}{(2\pi\hbar)^3}\int d\textbf{p} e^{\frac{i}{\hbar}\textbf{p}(\textbf{r} - \textbf{r}')}  \Big) = i\hbar \frac{\partial}{\partial \textbf{r}'} \delta(\textbf{r} - \textbf{r}')
+		\end{split}
+	\end{equation}
+	Подставим получившееся выражение в~\eqref{imulseFirst}:
+	\begin{equation}
+		\braket{\textbf{r}|\phi} = i\hbar \int d\textbf{r}' \Big(\frac{\partial}{\partial \textbf{r}'} \delta(\textbf{r} - \textbf{r}')\Big) \psi(\textbf{r}') = - i\hbar \int d\textbf{r}' \delta(\textbf{r} - \textbf{r}') \frac{\partial \psi}{\partial \textbf{r}'} = - i\hbar \frac{\partial \psi}{\partial \textbf{r}}
+	\end{equation}
+	Следовательно, действие оператора импульса на волновую функцию сводится к дифференцированию:
+	\begin{equation}
+		\hat{\textbf{p}}\psi(\textbf{r}) = -i\hbar \frac{\partial \psi}{\partial \textbf{r}}
+	\end{equation}
+	Теперь можно легко записать уравнение Шредингера в координатном представлении:
+	\begin{equation}
+		i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \Delta \psi + U(\textbf{r})\psi
+	\end{equation}
+	
+	\item \textit{Записать стационарное уравнение Шредингера для частицы с массой m в импульсном представлении.}
+	
+	Аналогично предыдущему пункту легко найти, что оператор координаты в импульсном представлении выглядит следующим образом:
+	\begin{equation}
+		\hat{\textbf{r}} = i\hbar \nabla
+	\end{equation}
+	Тогда стационарное уравнение Шредингера в импульсном представлении запишется следующим образом:
+	\begin{equation}
+		\frac{\textbf{p}^2}{2m} \psi_\textbf{p} + U(i\hbar\nabla)\psi_\textbf{p} = E \psi_\textbf{p}
+	\end{equation}
+\end{enumerate}
+
+\subsection*{Основные коммутационные соотношения}
+\begin{enumerate}
+	\item \textit{Чему равен коммутатор $[x,\hat{p}_{x}]$?}
+	\begin{equation}
+		[x,\hat{p}_{x}]=i\hbar
+	\end{equation}
+	\item \textit{Чему равен коммутатор $[\hat{x}_{\alpha},\hat{p}_{\beta}]$?}
+	\begin{equation}
+		[\hat{x}_{\alpha},\hat{p}_{\beta}]=i\hbar\delta_{\alpha\beta}
+	\end{equation}
+	\item \textit{Чему равен коммутатор $[\hat{\boldsymbol{p}},U(\boldsymbol{r})]$?}
+	\begin{equation}
+		[\hat{\boldsymbol{p}},U(\boldsymbol{r})]=i\hbar\nabla U(\boldsymbol{r})
+	\end{equation}
+	\item \textit{Чему равен коммутатор $[\hat{l}_{x},\hat{l}_{y}]$?}
+	\begin{equation}
+		[\hat{l}_{x},\hat{l}_{y}]=i\hat{l}_{z}
+	\end{equation}
+	\item \textit{Чему равен коммутатор $[\hat{l}_{\alpha},\hat{l}_{\beta}]$?}
+	\begin{equation}
+		[\hat{l}_{\alpha},\hat{l}_{\beta}]=ie_{\alpha\beta\gamma}\hat{l}_{\gamma}
+	\end{equation}
+	\item \textit{Чему равен коммутатор $[\hat{l}_{\alpha},\hat{\boldsymbol{l}}^{2}]$?}
+	\begin{equation}
+		[\hat{l}_{\alpha},\hat{\boldsymbol{l}}^{2}]=0
+	\end{equation}
+	\item \textit{Чему равен коммутатор $[\hat{l}_{\text{z}},\hat{l}_{+}]$?}
+	\begin{equation}
+		[\hat{l}_{\text{z}},\hat{l}_{+}]=\hat{l}_{+}
+	\end{equation}
+	\item \textit{Чему равен коммутатор $[\hat{l}_{\text{z}},\hat{l}_{-}]$?}
+	\begin{equation}
+		[\hat{l}_{\text{z}},\hat{l}_{-}]=-\hat{l}_{-}
+	\end{equation}
 \end{enumerate}
 
 \subsection*{Момент}
