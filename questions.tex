@@ -8,7 +8,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
-\usepackage{MnSymbol}
+%\usepackage{MnSymbol}
 \usepackage{tikz}
 \usepackage{braket}
 
@@ -22,6 +22,8 @@
 \author{Н. Попов, М. Славошевский}
 \date{\today}
 \maketitle
+
+{\center{\section*{Квантовая механика, часть 1}}}
 
 \subsection*{Постулаты}
 	\begin{enumerate}
@@ -425,6 +427,158 @@
 	\end{equation}
 \end{enumerate}
 
+\subsection*{Граничные условия}
+
+\begin{enumerate}
+	\item \textit{Как формулируются граничные условия для нахождения связанных состояний?}
+	
+	В связном состоянии вероятность найти частицу на бесконечности равна нулю. Так как плотность вероятности определяется через модуль квадрата волновой функции, то сама волновая функция на бесконечности должна равняться нулю:
+	\begin{equation}
+		\left.\psi(\textbf{r})\right|_{|\textbf{r}| \to \infty} = 0
+	\end{equation}
+	
+	\item \textit{Как формулируются граничные условия для задач непрерывного спектра?}
+	
+	Первое условие всегда состоит в том, что волновая функция должна быть непрерывна. Второе условие определяется видом потенциала и находится напрямую из уравнения Шредингера. Проинтегрируем стационарное уравнение вокруг особенности потенциала (для простоты рассмотрим одномерную задачу с особенностью в нуле):
+	\begin{equation}
+		-\frac{\hbar^2}{2m}\int\limits_{-\varepsilon}^{\varepsilon}\psi''(x)dx + \int\limits_{-\varepsilon}^{\varepsilon} U(x)\psi(x)dx = E\int\limits_{-\varepsilon}^{\varepsilon}\psi(x)
+	\end{equation}
+	Устремляя $\varepsilon$ к нулю, получим следующее условие:
+	\begin{equation}
+		\psi'(+0) - \psi'(-0) = -\frac{2m}{\hbar^2} \lim_{\varepsilon \to +0}\int\limits_{-\varepsilon}^{\varepsilon} U(x)\psi(x)dx
+	\end{equation}
+	Как видно из получившейся формулы, в случае достаточно хорошей функции потенциала получаем требование непрерывности производной волновой функции.
+
+\end{enumerate}
+
+\subsection*{Осциллятор}
+\begin{enumerate}
+	\item \textit{Записать гамильтониан линейного гармонического осциллятора.}
+	
+	Как известно еще из курса теоретической механики, функция Гамильтона одномерного осциллятора выглядит следующим образом:
+	\begin{equation}
+		H = \frac{p^2}{2m} + \frac{m\omega^2 x^2}{2}
+	\end{equation}
+	
+	\item \textit{Как определяются осцилляторные единицы энергии, длины, импульса?}
+	
+	Осцилляторной единицей энергии берется величина $E_0 = \hbar\omega$ - данная величина имеет размерность энергии. Пусть $E = \varepsilon E_0$. Разделим стационарное уравнение Шредингера на $E_0$:
+	\begin{equation}
+		\frac{1}{2}\big( \frac{\hat{p}^2}{m\hbar\omega} + \frac{m\omega}{\hbar}\hat{x}^2 \big)\ket{\psi_\varepsilon} = \varepsilon \ket{\psi_\varepsilon}
+	\end{equation}
+	Приняв за единицы координаты и импульса $x_0 = \sqrt{\frac{\hbar}{m\omega}}$ и $p_0 = \sqrt{\hbar m \omega}$ соответственно, получим канонический вид уравнения Шредингра для осциллятора:
+	\begin{equation}
+		\frac{1}{2}\big( \hat{P}^2 + \hat{Q}^2\big) \ket{\psi_\varepsilon} = \varepsilon \ket{\psi_\varepsilon}
+	\end{equation}
+	где $\hat{p} = p_0 \hat{P}, \ \hat{x} = x_0 \hat{Q}$. Размерность введенных единиц соответствует сопоставленным величинам.
+	
+	\item \textit{Записать определение операторов $a$ и $a^+$ через операторы координаты и импульса.}
+	
+	Операторы $a$ и $a^+$ вводятся для упрощения вида гамильтониана. Определяются они следующим образом:
+	\begin{equation}
+		a = \frac{1}{\sqrt{2}}\big( \hat{Q} + i \hat{P} \big)
+	\end{equation}
+	где операторы $\hat{Q}, \ \hat{P}$ были введены в предыдущем вопросе. Сопряженный оператор задается прямым сопряжением:
+	\begin{equation}
+		a^+ = \frac{1}{\sqrt{2}}\big( \hat{Q} - i \hat{P} \big)
+	\end{equation}
+	Тогда оператор Гамильтона перепишется в следующем виде:
+	\begin{equation}
+		\hat{H} = \frac{1}{2}(aa^+ + a^+ a) \label{oscillatorFirst}
+	\end{equation}
+	
+	\item \textit{Выразить операторы координаты и импульса через операторы $a$ и $a^+$.}
+	
+	Решая систему линейных уравнений, находим:
+	\begin{equation}
+		\hat{Q} = \frac{1}{\sqrt{2}}(a + a^+), \ \hat{P} = \frac{1}{i\sqrt{2}}(a - a^+)
+	\end{equation}
+	
+	\item \textit{Чему равен коммутатор $[a,a^+] = \ ?$}
+	\begin{equation}
+		[a,a^+] = \frac{1}{2}[\hat{Q} + i\hat{P}, \hat{Q} - i\hat{P}] = \frac{1}{2}\Big(-i[\hat{Q},\hat{P}] + i[\hat{P},\hat{Q}] \Big) = \frac{i}{p_0 x_0}[\hat{p}, \hat{x}] = 1
+	\end{equation}
+	
+	\item \textit{Записать выражение гамильтониана осциллятора через $a$ и $a^+$.}
+	
+	Зная коммутатор операторов $a, a^+$, можно переписать выражение~\eqref{oscillatorFirst}:
+	\begin{equation}
+		\hat{H} = a^+a + \frac{1}{2}
+	\end{equation}
+	
+	\item \textit{Как определяется спектр осциллятора?}
+	
+	Рассмотрим спектр оператора $\hat{\nu} = a^+a$. Вычислим коммутатор $[a,a^+a]$:
+	\begin{equation}
+		[a,a^+a] = a^+[a,a] + [a,a^+]a = a
+	\end{equation}
+	Аналогичным образом $[a^+,a^+a] = a^+$. Пусть у нас есть собственное состояние $\ket{\nu}$ оператора $\hat{\nu}$, и $\ket{\psi} = a\ket{\nu}$. Рассмотрим действие оператора $\hat{\nu}$ на $\ket{\psi}$:
+	\begin{equation}
+		\hat{\nu}\ket{\psi} = \hat{\nu} a\ket{\nu} = (a\hat{\nu} - a)\ket{\nu} = (\nu - 1)a\ket{\nu} = (\nu - 1)\ket{\psi}
+	\end{equation}
+	Таким образом, вектор $a\ket{\nu}$ является собственным вектором оператора $\hat{\nu}$ со значением $\nu - 1$. Получается, что оператор $a$ понижает собственное число на единицу. Проделывая аналогичные выкладки, можно показать, что оператор $a^+$ повышает собственное значение на единицу. Заметим, что собственные значения оператора $\hat{\nu}$ неотрицательны:
+	\begin{equation}
+		\braket{\nu|a^+a|\nu} = \nu\braket{\nu|\nu} = \nu = \| a\ket{\nu}\|^2 \geq 0
+	\end{equation}
+	Следовательно, существует минимальное значение $\nu_0$ такое, что $a\ket{\nu_0} = 0$. Подействовав оператором $\hat{\nu}$ на это состояние выясняем, что минимальное собственное значени равно нулю:
+	\begin{equation}
+		a^+a\ket{\nu_0} = \nu_0 = a^+ (a\ket{\nu_0}) = 0
+	\end{equation}
+	Таким образом, спектр осциллятора дискретен, расстояние между значениями равно $\hbar\omega$ и минимальной энергией $\frac{\hbar\omega}{2}$.
+	
+	\item \textit{Записать полный набор квантовых чисел, определяющих состояния одномерного гармонического осциллятора. Какие значения могут принимать квантовые числа?}
+	
+	Спектр оператора Гамильтона не является вырожденным, следовательно полный набор квантовых чисел для осциллятора будет состоять только из номера уровня. В предыдущем вопросе было показано, что спектр гамильтониана дискретен.
+	
+	\item \textit{Чему равен результат действия оператора $a\ket{n} = \ ?$}
+	
+	Ранее было показано, что оператор $a$ понижает собственное число на единицу. Остается только выяснить коэффициент, на который домножается состояние. Пусть $a\ket{n} = \alpha_{n-1}\ket{n-1}$, тогда $\bra{n}a^+ = \alpha^*_{n-1}\bra{n-1}$, и
+	\begin{equation}
+		|\alpha_{n-1}|^2 = \braket{n|a^+a|n} = n
+	\end{equation}
+	Следовательно, $\alpha_{n-1} = \sqrt{n-1}e^{i\varphi}$. Опуская несущественный фазовый множитель, получаем искомый результат:
+	\begin{gather}
+		a\ket{n} = \sqrt{n}\ket{n-1} \\
+		a^+\ket{n} = \sqrt{n+1} \ket{n+1}
+	\end{gather}
+	Действие оператора $a^+$ вычисляется аналогично.
+	\item \textit{ Чему равно $a^+\ket{n} = \ ?$}
+	
+	Смотри предыдущий вопрос.
+	\item \textit{Чему равно $a\ket{0} = \ ?$}
+	
+	При поиске спектра было показано, что результат равен нулю. Аналогично ответ можно найти, воспользовавшись явным действием оператора $a$.
+	\item \textit{Выразить произвольное состояние осциллятора $\ket{n}$ через основное состояние $\ket{0}$.}
+	
+	Так как оператор $a^+$ повышает собственное число на единицу, то состояние $\ket{n}$ можно выразить через состояние $\ket{0}$ следующим образом:
+	\begin{equation}
+		\ket{n} = C_n (a^+)^n \ket{0}
+	\end{equation}
+	Остается только найти константу $C_n$. Зная явный вид действия оператора $a^+$, получаем:
+	\begin{equation}
+		\ket{n} = C_n \sqrt{n!}\ket{n}
+	\end{equation}
+	то есть константа $C_n = \frac{1}{\sqrt{n!}}$. Таким образом, получаем ответ:
+	\begin{equation}
+		\ket{n} = \frac{(a^+)^n}{\sqrt{n!}}\ket{0}
+	\end{equation}
+	
+	\item \textit{Какой вид имеет волновая функция основного состояния осциллятора $\psi(Q)$= (в безразмерных единицах)?}
+	
+	Волновая функция $\psi(Q) = \braket{Q|0}$. Для нахождения явного вида воспользуемся искусственным приемом - найдем явный вид $\braket{Q|a|0}$ (это значение равно нулю):
+	\begin{equation}
+	\begin{split}
+		\braket{Q|a|0} = \frac{1}{\sqrt{2}}\braket{Q|\hat{Q} + i \hat{P}|0} = \frac{1}{\sqrt{2}}\int dQ' \Big( \braket{Q|\hat{Q}|Q'} + i\braket{Q|\hat{P}|Q'} \Big)\braket{Q'|0} = \\ =\frac{1}{\sqrt{2}}\int dQ'\Big(Q'\delta(Q-Q') - \frac{\partial}{\partial Q'}\delta(Q-Q') \Big) \psi(Q) = \frac{1}{\sqrt{2}} \Big(Q\psi(Q) + \psi'(Q)\Big) = 0
+	\end{split}
+	\end{equation}	
+	Решая получившееся дифференциальное уравнение, получаем:
+	\begin{equation}
+		\psi(Q) = A e^{-\frac{1}{2}Q^2}
+	\end{equation}
+	Нормируя квадрат полученной функции, находим $A = \pi^{-\frac{1}{4}}$.
+\end{enumerate}
+
+
 \subsection*{Момент}
 	\begin{enumerate}
 		\item \textit{Выразить $\hat{\textbf{l}}^2$ через $\hat{l}_z$ и $\hat{l}_\pm$.}	
@@ -452,5 +606,256 @@
 			\hat{l}_\pm\ket{l,m}=\sqrt{(l\mp m)(l\pm m-1)}\ket{l,m\pm1}
 		\end{equation}	
 	\end{enumerate}
+	
+\subsection*{Центральное поле}
+	\begin{enumerate}
+		\item \textit{Как определяется полный набор физических величин бесспиновой частицы в центральном поле?}
+		
+		По теореме Кёнига энергию системы можно переписать в следующем виде:
+		\begin{equation}
+			\hat{H} = \frac{\hat{p}_r^2}{2m} + \frac{\hat{\textbf{M}}^2}{2I} + U(\hat{r})
+		\end{equation}
+		где $\textbf{M}$ - момент импульса, $I$ момент инерции. Переходя в сферические координаты, можно доказать, что оператор момента импульса действует только на угловые координаты. Из описанных выше коммутационных соотношений для оператора момента импульса следует, что операторы $\hat{H}, \hat{M}_z$ и $\hat{\textbf{M}}^2$ коммутируют между собой, и их можно включить в полный набор физических величин. Явные вычисления показывают, что этот набор набор оказывается полным.
+		 
+		 \item \textit{Как разделяются переменные в волновой функции, описывающей состояние частицы в центральном поле $\psi(\textbf{r}) = \ ?$}
+		 
+		 Из-за того, что лапласиан в сферических координатах разбиватся на две части - радиальную и угловую, можно предположить, что возможно следующее разделение переменных:
+		 \begin{equation}
+		 	\psi(\textbf{r}) = R(r)Y(\theta,\varphi)
+		 \end{equation}
+		 Подставим эту волновую функцию в стационарное уравнение Шредингера и поделив на неё, получим:
+		 \begin{equation}
+		 	-\frac{\hbar^2}{2m} \frac{\Delta_r R(r)}{R(r)} - \frac{\hbar^2}{2mr^2}\frac{\Delta_{\theta,\varphi} Y(\theta, \varphi)}{Y(\theta, \varphi)} + U(r) = E
+		 \end{equation}
+		 Данное уравнение можно привести к виду, в котором будет сумма функции, зависящей только от $r$, и функции, зависящей только от $\theta,\varphi$, причем их сумма будет равна константе. Следовательно, данное разделение переменных имеет место.
+		 
+		 \item \textit{Асимптотическое поведение радиальной функции связанного состояния $\left.R_{nl}(r)\right|_{r \to 0} \sim \ ?$}
+		 
+		 Угловая функция $Y(\theta, \varphi)$ выбирается как собственная для оператора квадрата момента импульса. Тогда уравнение на радиальную часть $R_{nl}$ получится следующим:
+		 \begin{equation}
+		 	R''_{nl} + \frac{2}{r}R_{nl}' - \frac{l(l+1)}{r^2}R_{nl} - \frac{2m}{\hbar^2}(E_n-U(r))R_{nl} = 0
+		 \end{equation}
+		 При устремлении $r$ к нулю преобладающими оказываются следующие слагаемые\footnote{При достаточно адекватном потенциале}:
+		 \begin{equation}
+		 	R_{nl}'' +\frac{2}{r} R_{nl}' - \frac{l(l+1)}{r^2}R_{nl} = 0
+		 \end{equation}
+		 Решениями этого уравнения являются функции вида $Cr^s$. Найдем $s$:
+		 \begin{equation}
+		 	s(s+1) - l(l+1) = 0 \Rightarrow s = l, -(l+1)
+		 \end{equation}
+		 Второе значение дает неограниченную волновую функцию, что противоречит условию нормировки состояния (интеграл будет расходиться). Следовательно, асимптотика $R_{nl}$ в нуле следующая:
+		 \begin{equation}
+		 	\left.R_{nl}(r)\right|_{r \to 0} \sim r^l
+		 \end{equation}
+		 
+		 \item \textit{Асимптотическое поведение радиальной функции связанного состояния $\left.R_{nl}(r)\right|_{r \to \infty} \sim \ ?$}
+		 
+		 Аналогично предыдущему вопросу, при стремлении $r$ к бесконечности преобладают следующие слагаемые:
+		 \begin{equation}
+		 	R_{nl}'' - \frac{2mE}{\hbar^2}R_{nl} = 0
+		 \end{equation}
+		 Решением этого уравнения является экспоненты вида $c e^{\pm \varkappa r}$, где $\varkappa = \sqrt{\frac{2mE}{\hbar^2}}$. Положительная степень экпоненты противоречит условию связности состояния, следовательно, асимптотика следующая:
+		 \begin{equation}
+		 	\left.R_{nl}(r)\right|_{r \to 0} \sim e^{- \varkappa r}
+		 \end{equation}
+		 
+		 \item \textit{Записать гамильтониан атома водорода.}
+		 
+		 В атоме водорода потенциал кулоновский ($U(r) = -\frac{e^2}{r}$), и гамильтониан выглядит следующим образом (в координатном представлении):
+		 \begin{equation}
+		 	\hat{H} = -\frac{\hbar^2}{2m}\Delta -\frac{e^2}{r}
+		 \end{equation}
+		 
+		 \item \textit{Как определяется атомная система единиц?}
+		 
+		 Атомная система единиц за основу берет единицу атомной скорости $v_0 = \frac{e^2}{\hbar}$, из которой получается постоянная тонкой структуры $\frac{v_0}{c} = \frac{1}{137}$. Единица энергии задается следующим образом:
+		 \begin{equation}
+		 	E_0 = mv_0^2 = \frac{me^4}{\hbar} = \frac{\hbar^2}{ma_0^2}
+		 \end{equation}
+		 где $a_0 = \frac{\hbar}{mv_0} = \frac{\hbar^2}{me^2}$ - атомная единица расстояния.
+		 
+		 \item \textit{Записать полный набор и значения, которые могут принимать квантовые числа, определяющие состояние атома водорода.}
+		 
+		 В первом вопросе было показано, что полным набором являются энергия, квадрат момента импульса и его проекция на выбранную ось. Для удобства в качестве квантовых чисел берут номер уровня энергии $n$, максимальную проекцию момента импульса $l$ в единицах $\hbar$ и проекцию на выбранную ось $m$ также в единицах $\hbar$. Число $n$ задается равенством
+		 \begin{equation}
+		 	n = \sqrt{\frac{me^4}{2|E_n|\hbar^2}}
+		 \end{equation}
+		 откуда легко находится спектр атома водорода:
+		 \begin{equation}
+		 	E_n = -\frac{me^4}{2\hbar n^2}
+		 \end{equation}
+		 Ограничения на число $l$ задаются неравенством $n - l - 1 \geq 0$. Число $m$ как проекция спина на выбранную ось по модулю не может превосходить максимальной.
+		 \item \textit{Записать спектр атома водорода и определить кратность вырождения уровней энергии.}
+		 
+		 В предыдущем вопросе спектр атома водорода был получен, подсчитаем кратность вырождения:
+		 \begin{equation}
+		 	N = \sum\limits_{l=0}^{n-1}\sum\limits_{m=-l}^{l}1 = \sum\limits_{l=0}^{n-1} 2l+1 = n^2
+		 \end{equation}
+		 
+		 \item \textit{Какой вид имеет волновая функция основного состояния атома водорода $\psi_0(\textbf{r}) = \ ?$}
+		 
+		 Радиальная часть волновой функции основного состояния выглядит следующим образом:
+		 \begin{equation}
+		 	R_{10}(r) = \frac{2}{\sqrt{a_0}}e^{-\frac{r}{a_0}}
+		 \end{equation}
+		 Угловая часть основного состояния:
+		 \begin{equation}
+		 	Y_{00}(\theta, \varphi) = \frac{1}{\sqrt{4\pi}}
+		 \end{equation}
+	\end{enumerate}
 
+{\center{\section*{Квантовая механика, часть 2}}}
+\subsection*{Квазиклассика}
+	\begin{enumerate}
+		\item \textit{Представление волновой функции частицы через квантовое действие.}
+
+\begin{equation}
+\psi(\boldsymbol{r},t)=Ae^{\frac{i}{\hbar}\hat{S_{q}}}
+\end{equation}
+
+
+		\item \textit{Уравнение для квантового действия (консервативной системы).}
+\begin{equation}
+-\frac{i\hbar}{2m}\triangle s+\frac{1}{2m}(\nabla s)^{2}+U(q)-E=0
+\end{equation}
+
+
+\begin{equation}
+s=S_{q}+Et
+\end{equation}
+
+
+		\item \textit{Разложение квантового действия по степеням $\hbar$.}
+\begin{equation}
+S_{q}=\sum_{k=0}^{+\infty}(\frac{\hbar}{i})^{k}s_{k}
+\end{equation}
+
+
+		\item \textit{Уравнение для квантового действия в одномерном случае.} 
+\begin{equation}
+-\frac{i\hbar}{2m}s^{\prime\prime}+\frac{1}{2m}(s^{\prime})^{2}+U(q)-E=0
+\end{equation}
+
+
+		\item \textit{Уравнение для определения нулевого приближения квантового действия. Выражение для квазиклассического импульса.}  
+\begin{equation}
+\frac{1}{2m}(s_{0}^{\prime})^{2}=E\text{-}U(q)
+\end{equation}
+
+
+\begin{equation}
+s_{0}=\pm\int\sqrt{2m(E-U(q))}dq=\pm\int p(q)dq
+\end{equation}
+
+
+\begin{equation}
+2s{}_{0}^{\prime}s{}_{1}^{\prime}+s{}_{0}^{\prime\prime}=0
+\end{equation}
+
+
+\begin{equation}
+s_{1}=-\frac{1}{2}\ln p(q)+C
+\end{equation}
+
+
+		\item \textit{Критерий применимости квазиклассического приближения.}  
+\begin{equation}
+|\frac{\hbar s^{\prime\prime}}{(s^{\prime})^{2}}|=|\frac{d}{dq}\frac{\hbar}{s^{\prime}}|=|\frac{d}{dq}\frac{\hbar}{p}|=|\frac{d}{dq}\lambda|\ll1
+\end{equation}
+
+
+\begin{equation}
+=|\frac{\hbar}{p^{2}}\frac{dp}{dq}|=|\frac{\hbar m}{p^{3}}(-\frac{dU}{dq})|\ll1
+\end{equation}
+
+
+		\item \textit{Общий вид волновой функции квазиклассического приближения в классически разрешенной области.} 
+\begin{equation}
+\psi(q)=\frac{C_{1}}{\sqrt{p(q)}}\exp\{\frac{i}{\hbar}\int p(q)dq\}(1+O(\frac{d\lambda}{dq}))+\frac{C_{2}}{\sqrt{p(q)}}\exp\{-\frac{i}{\hbar}\int p(q)dq\}(1+O(\frac{d\lambda}{dq}))
+\end{equation}
+
+
+		\item \textit{Возможные постановки задачи в квазиклассическом приближении.} 
+		
+		Поскольку сшивка волновых функций в классически разрешнной и в
+классически запрещнной зонах существенным образом зависит от граничных
+условий то рассматриваются разные задачи а именно:
+
+1. нахождение уровней энергии в потенциальной яме
+
+2. нахождение коэффициента проникновения частицы через потенциаль
+ный барьер.
+
+		\item \textit{Точки поворота (определение).}  
+\begin{equation}
+p(q_{0})=0
+\end{equation}
+или что то же самое:
+\begin{equation}
+E=U(q_{0})
+\end{equation}
+
+
+		\item \textit{Правило квантования Бора-Зоммерфельда для определения энергетического спектра связанных состояний.}  
+\begin{equation}
+\intop_{a}^{b}p(q)dq=\pi\hbar(n+\frac{1}{2})
+\end{equation}
+
+
+или: 
+\begin{equation}
+\oint p(q)dq=2\pi\hbar(n+\frac{1}{2})
+\end{equation}
+
+
+		\item \textit{Определение квазиклассического периода.} 
+
+\begin{equation}
+T=\oint\frac{dq}{v}
+\end{equation}
+
+
+		\item \textit{Нормировка волновой функции связанного состояния в квазиклассическом приближении.} 
+\begin{equation}
+\begin{split}
+1=\intop_{-\infty}^{+\infty}|\psi(q)|^{2}dq\approx\intop_{a}^{b}|\psi(q)|^{2}dq=4|C|^{2}\intop_{a}^{b}\frac{\cos^{2}\{\frac{\intop_{q}^{b}p(q)dq}{\hbar}-\frac{\pi}{4}\}}{p(q)}dq \\
+\approx2|C|^{2}\intop_{a}^{b}\frac{dq}{p(q)}=\frac{|C|^{2}T}{m}=\frac{2\pi|C|^{2}}{m\omega}
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+C=\sqrt{\frac{m\omega}{2\pi}}
+\end{equation}
+
+
+\begin{equation}
+\psi(q)=\sqrt{\frac{2m\omega}{\pi}}\cos^{2}\{\frac{\intop_{q}^{b}p(q)dq}{\hbar}-\frac{\pi}{4}\}
+\end{equation}
+
+
+		\item \textit{Плотность энергетического спектра связанных состояний в квазиклассическом приближении.} 
+
+\begin{equation}
+\begin{split}
+\frac{\triangle n}{\triangle E}\approx\frac{dn}{dE}=\frac{d}{dE}\frac{1}{2\pi\hbar}\oint p(q)dq=\frac{d}{dE}\frac{1}{2\pi\hbar}\oint\sqrt{2m(E-U(q))}dq \\
+=\frac{1}{2\pi\hbar}\oint\frac{m}{p(q)}dq=\frac{1}{2\pi\hbar}\oint\frac{dq}{v}=\frac{T}{2\pi\hbar}=\frac{1}{\hbar\omega}
+\end{split}
+\end{equation}
+
+
+		\item \textit{Постановка задачи о проникновении частицы через потенциальный барьер.} 
+
+\begin{equation}
+\text{ясно-понятно}
+\end{equation}
+
+
+		\item \textit{Вероятность проникновения через потенциальный барьер.}
+\begin{equation}
+D\text{\ensuremath{\approx}}\exp\{-\frac{2}{\hbar}\int_{a}^{b}|p(q)|dq\}
+\end{equation}
+	\end{enumerate}
+	
+\subsection*{Стационарная теория возмущений}
 \end{document}
