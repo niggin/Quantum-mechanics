@@ -394,6 +394,14 @@
 	\begin{equation}
 		\frac{\textbf{p}^2}{2m} \psi_\textbf{p} + U(i\hbar\nabla)\psi_\textbf{p} = E \psi_\textbf{p}
 	\end{equation}
+	Однако применять оператор $U(i\hbar\nabla)$ на практике очень неудобно. Для этого переходят к интегральному виду:
+	\begin{equation}
+		\braket{\textbf{p}|\hat{U}|\textbf{p}'} = \int d\textbf{r} d\textbf{r}' \braket{\textbf{p}|\textbf{r}} U(\textbf{r}')\delta(\textbf{r}-\textbf{r}')\braket{\textbf{p}'|\textbf{r}'} = \int \frac{d\textbf{r}}{(2\pi\hbar)^3} e^{-i\frac{(\textbf{p}-\textbf{p}')\textbf{r}}{\hbar}} U(\textbf{r}) = \frac{1}{(2\pi\hbar)^3}U_{\textbf{p}-\textbf{p}'}
+	\end{equation}
+	где $U_{\textbf{p}-\textbf{p}'}$ - фурье-образ потенциала. Тогда уравнение Шредингера запишется в следующем виде:
+	\begin{equation}
+		\frac{\textbf{p}^2}{2m} \psi_\textbf{p} + \int \frac{d\textbf{p}'}{(2\pi\hbar)^3} U_{\textbf{p}-\textbf{p}'}\psi_{\textbf{p}'} = E \psi_\textbf{p}
+	\end{equation}
 \end{enumerate}
 
 \subsection*{Основные коммутационные соотношения}
@@ -873,19 +881,19 @@ D\text{\ensuremath{\approx}}\exp\{-\frac{2}{\hbar}\int_{a}^{b}|p(q)|dq\}
 		\end{equation}
 		и для оператора $\hat{H}_0$ задача решается. Тогда оператор $\hat{V}$ называют \textit{возмущением}. Далее решение стационарного уравнения ищется в следующем виде:
 		\begin{equation}
-			\ket{\psi_n} = \sum\limits_{k} c_k^{(n)} \ket{\psi_k^{(0)}} \label{disturbanceVectors}
+			\ket{\psi} = \sum\limits_{k} c_k^{(n)} \ket{\psi_k^{(0)}} \label{disturbanceVectors}
 		\end{equation}
 		где $\ket{\psi_k^{(0)}}$ - собственные векторы оператора $\hat{H_0}$. Подставим волновую функцию в стационарное уравнение:
 		\begin{equation}
-			\sum\limits_{k}c_k^{(n)}\big(E_k^{(n)} \ket{\psi_k^{(0)}} + \hat{V}\ket{\psi_k^{(0)}}\big) = \sum\limits_{k}c_k^{(n)}E_k \ket{\psi_k^{(0)}}
+			\sum\limits_{k}c_k^{(n)}\big(E_k^{(0)} \ket{\psi_k^{(0)}} + \hat{V}\ket{\psi_k^{(0)}}\big) = E\sum\limits_{k}c_k^{(n)} \ket{\psi_k^{(0)}}
 		\end{equation}
 		Умножим скалярно на $\bra{\psi_m^{(0)}}$:
 		\begin{equation}
-			\sum\limits_{k}c_k^{(n)}\big(E_k^{(n)} \delta_{km} + V_{km}\big) = \sum\limits_{k}c_k^{(n)}E_k \delta_{km}
+			\sum\limits_{k}c_k^{(n)}\big(E_k^{(0)} \delta_{km} + V_{km}\big) = E\sum\limits_{k}c_k^{(n)}\delta_{km}
 		\end{equation}
 		где $V_{nm}$ - матричный элемент оператора $\hat{V}$. Перенесем все слагаемые в левую часть:
 		\begin{equation}
-			\sum\limits_{k}c_k^{(n)}\big(V_{km} - (E_k^{(n)} - E_k) \delta_{km}\big) = 0
+			\sum\limits_{k}c_k^{(n)}\big(V_{km} - (E_k^{(0)} - E) \delta_{km}\big) = 0
 		\end{equation}
 		Из этого уравнения находятся поправки к уровням энергии.
 		
@@ -1096,6 +1104,99 @@ D\text{\ensuremath{\approx}}\exp\{-\frac{2}{\hbar}\int_{a}^{b}|p(q)|dq\}
 		
 	\end{enumerate}
 	
+
+\subsection*{Нестационарная теория возмущений}
+\begin{enumerate}
+	\item \textit{Как зависит от времени вектор состояния квантовой системы в представлении Гайзенберга?}
+	
+	В представлении Шредингера базисные векторы неизменны, но изменяется
+состояние. В представлении Гайзенберга все наоборот - базисные состояния
+меняются, а состояние остатся неизменным.
+	
+	\item \textit{Как зависит от времени оператор в представлении Гайзенберга?}
+	
+	Пусть $\hat{A}_S$ - оператор в представлении Шрёдингера, тогда этот же оператор в представлении Гайзенберга будет иметь вид:
+	\begin{equation}
+		\hat{A}_{H}=\hat{U}^{+}\hat{A}_{S}\hat{U}
+	\end{equation}
+	
+	\item \textit{Как определяется вектор состояния квантовой системы в представлении взаимодействия?}
+	
+	\begin{equation}
+		\ket{\psi_{I}(t)}=\hat{U_{0}^{+}}(t)\ket{\psi(t)}
+	\end{equation}
+	
+	\item \textit{Уравнение Шредингера в представлении взаимодействия.}
+	\begin{equation}
+		i\hbar\frac{\partial}{\partial t}\psi_{I}(t)=\hat{V}_{I}\psi_{I}(t)
+	\end{equation}
+	
+	\item \textit{Итерационный ряд для определения состояния в нестационарной теории возмущений, T - exp.}
+	
+	\begin{equation}
+		\psi_{I}(t)=\hat{T}exp\big\{-\frac{i}{\hbar}\int_{t_{0}}^{t}\hat{V_{I}}(t')dt'\big\}\psi_{I}(t_{0})=\big[\sum_{k=0}\frac{1}{k!}\big(-\frac{i}{\hbar}\big)^{k}\big\{\dots \int_{[t_{0,}t]^{k}}\prod_{i=1}^{k}dt^{(i)}\prod_{i=1}^{k}\hat{V_{I}}(t^{(i)})\big]\psi_{I}(t_{0})
+	\end{equation}
+	
+	\item \textit{Общее выражение вероятности перехода в нестационарной теории возмущений.}
+	
+	Вероятность перейти из начального состояния $i$ в состояние $f$ равна:
+	\begin{equation}
+		W_{if}=\big|\bra{f}\hat{T}exp\big\{-\frac{i}{\hbar}\int_{t_{0}}^{t}\hat{V_{I}}(t')dt'\big\}\ket{i}\big|^{2}
+	\end{equation}
+	
+	\item \textit{Выражение вероятности перехода в первом порядке нестационарной теории возмущений.}
+	
+	\begin{equation}
+		W_{if}^{(1)}=\frac{1}{\hbar^{2}}\big|\int_{t_{0}}^{t}\bra{f}\hat{V_{I}}(t')\ket{i}dt'\big|^{2}=\frac{1}{\hbar^{2}}\big|\int_{t_{0}}^{t}\exp\{i\omega_{fi}t'\}\hat{V_{fi}}(t')dt'\big|^{2}
+	\end{equation}
+	
+	\item \textit{Критерий применимости нестационарной теории возмущений.}
+	
+	\begin{equation}
+		|W_{if}|\ll1
+	\end{equation}
+	
+	\item \textit{Соотношение неопределенностей для энергии и времени.}
+	
+	\begin{gather}
+		W_{if}\approx\frac{1}{\hbar^{2}}|V_{fi}|^{2}(t-t_{0})^{2}\ll1 \\
+		\triangle t\triangle E\sim\hbar
+	\end{gather}
+	
+	\item \textit{Определение вероятности перехода в непрерывном спектре.}
+	\begin{equation}
+		dW_{if}=\big|\bra{f}\hat{T}exp\big\{-\frac{i}{\hbar}\int_{t_{0}}^{t}\hat{V_{I}}(t')dt'\big\}\ket{i}\big|^{2}d\nu_{f},
+	\end{equation}
+	Конечное состояние содержится в промежутке $d\nu_f$, с энергией в промежутке $[E_f, E_f + dE_f$.
+	
+	\item \textit{Вероятность перехода в единицу времени, “золотое правило” Ферми.}
+	\begin{gather}
+		\omega_{if}=\frac{dW_{if}}{dt}=\frac{2\pi}{\hbar}\big|F_{fi}\big|^{2}\rho(E_{f})\big|_{E_{f}=E_{i}+\hbar\omega} \\
+		\rho(E_{f})=\frac{d\nu(E_{f)}}{dE_{f}} \\
+		\hat{V}=\hat{F}e^{-i\omega t}+\hat{F}^{+}e^{i\omega t}
+	\end{gather}
+	
+	\item \textit{Понятие квазистационарного состояния, ширина уровня.}
+	
+	\begin{equation}
+		e^{-wt} = |e^{-\frac{i}{\hbar}E_n t}|^2 \rightarrow E_n = E_n^{(0)} - i\frac{\Gamma_n}{2}, \ \Gamma_n=\hbar w
+	\end{equation}
+	Величина $\Gamma_n$ - ширина уровня энергии.
+	
+	\item \textit{Поправка второго порядка к уровню энергии в непрерывном спектре и ее связь с шириной
+уровня квазистационарного состояния.}
+
+	\begin{gather}
+		E_n^{(2)} = \sum\limits_{m\neq n} \frac{|V_{mn}|^2}{E_n^{(0)} - E_m^{(0)}} + \int \frac{|V_{\nu n}|^2}{E_n^{(0)} - E_\nu} d\nu_E \\
+		\frac{\Gamma}{2} = \left.\pi |V_{fn}|^2 \rho(E_f)\right|_{E_f=E_n}
+	\end{gather}
+	
+	\item \textit{Связь ширины уровня квазистационарного состояния и вероятности перехода в единицу времени в непрерывном спектре.}
+	
+	\begin{equation}
+		w_{fi} = \frac{\Gamma}{2\hbar}
+	\end{equation}
+\end{enumerate}
 	
 {\center{\section*{Квантовая механика, часть 2}}}
 \subsection*{Многочастичная теория}
@@ -1361,31 +1462,224 @@ $\frac{1}{\sqrt{2}}\big( \psi_1(\textbf{r}_1) \psi_2(\textbf{r}_2) + \psi_2(\tex
 	
 	\item \textit{Для системы тождественных бозе-частиц определить результат действия оператора уничтожения на вектор состояния в пространстве чисел заполнения $a_\beta \ket{n_1, n_2, ...} = \ ?$}
 	
-	\item \textit{}
+	\begin{equation}
+		a_\beta \ket{n_1, n_2, ...} = \sqrt{n_\beta} \ket{n_1, n_2, ..., n_\beta -1,...}
+	\end{equation}
 	
-	\item \textit{}
+	\item \textit{Какой смысл имеет оператор $a^+_\beta a_\beta$, действующий в пространстве чисел заполнения?}
+	Этот оператор измеряет число частиц в состоянии $\beta$:
+	\begin{equation}
+		a^+_\beta a_\beta \ket{n_1, n_2, ...} = n_\beta \ket{n_1, n_2, ...}
+	\end{equation}
 	
-	\item \textit{}
+	\item \textit{Чему равно действие оператора $\sum\limits_{\beta}a^+_\beta a_\beta$ на вектор состояния в пространстве чисел заполнения?}
 	
-	\item \textit{}
+	Этот оператор подсчитывает число частиц в системе:
+	\begin{equation}
+		\sum\limits_{\beta}a^+_\beta a_\beta \ket{n_1, n_2, ...} =\sum\limits_{\beta} n_\beta \ket{n_1, n_2, ...} = N\ket{n_1, n_2, ...}
+	\end{equation}
+	\item \textit{Для системы тождественных ферми-частиц определить результат действия оператора рождения на вектор состояния в пространстве чисел заполнения $a^+_\beta \ket{n_1, n_2, ...} = \ ?$}
 	
-	\item \textit{}
+	\begin{equation}
+		a^+_\beta \ket{n_1, n_2, ...} = \left\{ 
+  \begin{array}{l l}
+    0 & \quad n_\beta = 1\\
+    \ket{n_1, n_2, ..., n_{\beta -1}, 1 , n_{\beta -1},...} & \quad n_\beta = 0
+  \end{array} \right.
+	\end{equation}
 	
-	\item \textit{}
+	\item \textit{Для системы тождественных ферми-частиц определить результат действия оператора уничтожения на вектор состояния в пространстве чисел заполнения $a_\beta \ket{n_1, n_2, ...} = \ ?$}
 	
-	\item \textit{}
+	\begin{equation}
+		a_\beta \ket{n_1, n_2, ...} = \left\{ 
+  \begin{array}{l l}
+    0 & \quad n_\beta = 0\\
+    \ket{n_1, n_2, ..., n_{\beta -1}, 0 , n_{\beta -1},...} & \quad n_\beta = 1
+  \end{array} \right.
+	\end{equation}
 	
-	\item \textit{}
+	\item \textit{Для системы тождественных ферми-частиц выразить оператор $a_\alpha a_\alpha^+$ через оператор числа частиц $\hat{N}_\alpha$ в состоянии $\ket{\alpha}$.}
 	
-	\item \textit{}
+	\begin{equation}
+		a_\alpha a_\alpha^+  = 1 - \hat{N}_\alpha
+	\end{equation}
 	
-	\item \textit{}
+	\item \textit{Для системы бозе-частиц определить среднее значение оператора $a_\alpha^+ a_\alpha$.}
 	
-	\item \textit{}
+	\begin{equation}
+		\braket{\psi| a_\alpha^+ a_\alpha|\psi} = n_\alpha
+	\end{equation}
 	
-	\item \textit{}
+	\item \textit{Для системы бозе-частиц определить среднее значение оператора $a_\alpha a_\alpha^+$.}
 	
-	\item \textit{}		
+	\begin{equation}
+		\braket{\psi| a_\alpha a_\alpha^+|\psi} = n_\alpha + 1
+	\end{equation}
+	
+	\item \textit{Для системы ферми-частиц определить среднее значение оператора $a_\alpha^+ a_\alpha$.}
+	
+	\begin{equation}
+		\braket{\psi| a_\alpha^+ a_\alpha|\psi} = n_\alpha
+	\end{equation}
+	
+	\item \textit{Для системы ферми-частиц определить среднее значение оператора $a_\alpha^+ a_\alpha$.}
+	
+	\begin{equation}
+		\braket{\psi| a_\alpha a_\alpha^+|\psi} = 1 - n_\alpha
+	\end{equation}	
+	
+	\item \textit{Чему равен коммутатор полевых операторов для системы тождественных бозе-частиц $\hat{\psi}(\textbf{r}')\hat{\psi}^+(\textbf{r})-\hat{\psi}^+(\textbf{r})\hat{\psi}(\textbf{r}')$?}
+	
+	\begin{equation}
+		\hat{\psi}(\textbf{r}')\hat{\psi}^+(\textbf{r})-\hat{\psi}^+(\textbf{r})\hat{\psi}(\textbf{r}') = \delta(\textbf{r}' - \textbf{r})
+	\end{equation}
+	
+	\item \textit{Чему равен антикоммутатор полевых операторов для системы тождественных ферми-частиц $\hat{\psi}(\textbf{r}')\hat{\psi}^+(\textbf{r}) + \hat{\psi}^+(\textbf{r})\hat{\psi}(\textbf{r}')$}
+	
+	\begin{equation}
+		\hat{\psi}(\textbf{r}')\hat{\psi}^+(\textbf{r}) + \hat{\psi}^+(\textbf{r})\hat{\psi}(\textbf{r}') = \delta(\textbf{r}' - \textbf{r})
+	\end{equation}
+	
+	\item \textit{Записать полевой оператор $\hat{\psi}(\textbf{r)}$ через операторы уничтожения $a_n$ состояний дискретного базиса $\varphi_n(\textbf{r})$.}
+
+	\begin{equation}
+		\hat{\psi}(\textbf{r)} = \sum\limits_{n} \varphi_n(\textbf{r}) a_n
+	\end{equation}		
+	
+	\item \textit{Записать полевой оператор $\hat{\psi}^+(\textbf{r)}$ через операторы уничтожения $a_n^+$ состояний дискретного базиса $\varphi_n(\textbf{r})$.}		
+	
+	\begin{equation}
+		\hat{\psi}^+(\textbf{r)} = \sum\limits_{n} \varphi_n^*(\textbf{r}) a_n^+
+	\end{equation}	
+	
+	\item \textit{Выразить оператор плотности частиц $\hat{\rho}(\textbf{r})$ через полевые операторы.}	
+	\begin{equation}
+		\hat{\rho}(\textbf{r}) = \hat{\psi}^+(\textbf{r)} \hat{\psi}(\textbf{r)}
+	\end{equation}
+	
+	\item \textit{Выразить оператор числа частиц $\hat{N}$ через полевые операторы.}
+	
+	\begin{equation}
+		\hat{N} = \int d\textbf{r}\hat{\psi}^+(\textbf{r)} \hat{\psi}(\textbf{r)}
+	\end{equation}
+	
+	\item \textit{Записать полевой оператор $\hat{\psi}(\textbf{r)}$ через операторы уничтожения $a_{\textbf{p},\sigma}$ в базисе состояний свободных частиц.}
+	
+	\begin{equation}
+		\hat{\psi}(\textbf{r)} = \int \frac{d\textbf{p}}{(2\pi\hbar)^\frac{3}{2}} e^{i\frac{\textbf{pr}}{\hbar}}a_\textbf{p}
+	\end{equation}
+	
+	\item \textit{Записать полевой оператор $\hat{\psi}^+(\textbf{r)}$ через операторы уничтожения $a^+_{\textbf{p},\sigma}$ в базисе состояний свободных частиц.}
+	
+	\begin{equation}
+		\hat{\psi}^+(\textbf{r)} = \int \frac{d\textbf{p}}{(2\pi\hbar)^\frac{3}{2}} e^{-i\frac{\textbf{pr}}{\hbar}}a^+_\textbf{p}
+	\end{equation}
+	
+	\item \textit{Записать операторы уничтожения $a_{\textbf{p},\sigma}$ через полевые операторы $\hat{\psi}(\textbf{r)}$.}
+	
+	\begin{gather}
+		a_\textbf{p} = \int \frac{d\textbf{p}}{(2\pi\hbar)^\frac{3}{2}} e^{-i\frac{\textbf{pr}}{\hbar}} \hat{\psi}(\textbf{r)} \\
+		a^+_\textbf{p} = \int \frac{d\textbf{p}}{(2\pi\hbar)^\frac{3}{2}} e^{i\frac{\textbf{pr}}{\hbar}} \hat{\psi}^+(\textbf{r)}
+	\end{gather}
+	
+	\item \textit{Записать одночастичный оператор в представлении чисел заполнения.}
+	
+	\begin{equation}
+		\hat{f}^{(1)} = \sum\limits_{m,n} f_{mn} a^+_m a_n
+	\end{equation}
+	
+	\item \textit{Записать оператор двухчастичного взаимодействия в представлении чисел заполнения.}
+	
+	\begin{equation}
+		\hat{V}^{(2)} = \frac{1}{2!}\sum\limits_{m,m',n,n'} V_{mn,m'n'} a^+_m a^+_n a_{n'}a_{m'}
+	\end{equation}
+	
+	\item \textit{Записать гамильтониан системы тождественных частиц в представлении чисел заполнения
+в собственном базисе.}
+
+	\begin{equation}
+		\hat{H} = A + \sum\limits_{\textbf{k}}\varepsilon(\textbf{k}) a^+_{\textbf{k}}a_{\textbf{k}} + \sum\limits_{\textbf{k},\textbf{k}'}C_{\textbf{k},\textbf{k}'} a^+_{\textbf{k}}a_{\textbf{k}'} + \frac{1}{2}\sum\limits_{\textbf{k}_1,\textbf{k}_2,\textbf{k}_3,\textbf{k}_4}D_{\textbf{k}_1,\textbf{k}_2,\textbf{k}_3,\textbf{k}_4} a^+_{\textbf{k}_1}a^+_{\textbf{k}_2}a_{\textbf{k}_3}a_{\textbf{k}_4}
+	\end{equation}
+\end{enumerate}
+
+\subsection*{Матрица плотности}
+\begin{enumerate}
+	\item \textit{Как, зная матрицу плотности системы, определить среднее значения оператора физической величины?}
+
+	\begin{equation}
+		f = \text{Tr} \hat{f}\hat{\rho}
+	\end{equation}
+	
+	\item \textit{В каком виде всегда можно представить матрицу плотности чистого состояния?}
+
+	\begin{equation}
+		\hat{\rho}_c = \ket{\psi}\bra{\psi}
+	\end{equation}
+	
+	\item \textit{Для матрицы плотности $\text{Tr} \rho = \ ?$}
+	
+	\begin{equation}
+		\text{Tr}\rho = 1
+	\end{equation}
+	
+	\item \textit{В каком случае Tr$\rho^2 = 1$?}
+	
+	\begin{equation}
+		\text{Tr} \rho^2 = \sum\limits_{a,n}w^2_a |c_n^a|^2 = \sum\limits_{a} w^2_a = 1 \iff w_a = \delta_{aa'}
+	\end{equation}
+	
+	\item \textit{В каком виде всегда можно представить матрицу плотности смешанного состояния?}
+	
+	\begin{equation}
+		\hat{\rho} = \sum\limits_{a} w_a \ket{\psi_a}\bra{\psi_a}
+	\end{equation}
+	
+	\item \textit{Для матрицы плотности определить связь $\rho$ и $\rho^+$.}
+	
+	\begin{equation}
+		\rho = \rho^+
+	\end{equation}
+	
+	\item \textit{Какой физический смысл имеют диагональные элементы матрицы плотности?}
+	
+	Диагональные элементы определяют вероятности обнаружения системы в данном собственном состоянии.
+	
+	\item \textit{Записать уравнение Лиувилля для эволюции матрицы плотности.}
+	
+	\begin{equation}
+		\frac{\partial \hat{\rho}}{\partial t} = -\frac{i}{\hbar} [\hat{H}, \hat{\rho]}
+	\end{equation}
+	
+	\item \textit{Записать формальное решение уравнения Лиувилля с помощью оператора эволюции.}
+	
+	\begin{equation}
+		\hat{\rho}(t) = \hat{U}(t)\hat{\rho}_0 \hat{U}^+(t)
+	\end{equation}
+	
+	\item \textit{Записать уравнение Лиувилля для матрицы плотности в матричной форме.}
+	
+	\begin{equation}
+		i\hbar \frac{\partial \rho_{nk}}{\partial t} = \sum\limits_{m} H_{nm}\rho_{mk} - \rho_{nm}H_{mk}
+	\end{equation}
+	
+	\item \textit{Определение энтропии системы с помощью матрицы плотности.}
+	
+	\begin{equation}
+		S(\rho) = -\sum\limits_{\nu} \rho_\nu \ln \rho_\nu
+	\end{equation}
+	где $\rho_\nu$ - собственные значения оператора $\rho$.
+	
+	\item \textit{Какой вид имеет равновесная матрица плотности малого канонического ансамбля?}
+	
+	\begin{equation}
+		\hat{\rho} = \frac{e^{-\beta\hat{H}}}{\text{Tr}e^{-\beta\hat{H}}}
+	\end{equation}
+	
+	\item \textit{Зная равновесную матрицу плотности малого канонического ансамбля, записать определение его энергии.}
+	
+	\begin{equation}
+		E = - \frac{\partial}{\partial \beta} \ln \text{Tr}e^{-\beta\hat{H}}
+	\end{equation}
 \end{enumerate}
 
 \end{document}
