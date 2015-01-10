@@ -129,13 +129,11 @@
 	\end{equation}
 	Повторяя приближение бесконечное число раз, в пределе получим:
 	\begin{equation}
-		\Psi(\textbf{r}, t) = \sum\limits_{n=0}^\infty  \Big(\frac{-it\hat{H} }{\hbar} \Big)^n \psi_0 (\textbf{r}) = e^{\frac{-it\hat{H} }{\hbar}} \psi_0 (\textbf{r}) = \hat{U}(t) \psi_0 (\textbf{r})
+		\Psi(\textbf{r}, t) = \sum\limits_{n=0}^\infty \frac{1}{n!} \Big(\frac{-it\hat{H} }{\hbar} \Big)^n \psi_0 (\textbf{r}) = e^{\frac{-it\hat{H} }{\hbar}} \psi_0 (\textbf{r}) = \hat{U}(t) \psi_0 (\textbf{r})
 	\end{equation}
 	где введен оператор эволюции $\hat{U}(t) = e^{\frac{-it\hat{H} }{\hbar}}$
 	
-	\item \textit{
-	 Какой вид имеет оператор эволюции консервативной системы?
-	}
+	\item \textit{Какой вид имеет оператор эволюции консервативной системы?}
 	\begin{equation}
 		\hat{U}(t) = e^{\frac{-it\hat{H} }{\hbar}}
 	\end{equation}
@@ -232,9 +230,15 @@
 	
 	Физическим величинам соответствуют эрмитовые операторы. Попробуем сопоставить величине $\varphi = p_\alpha x_\alpha$ оператор напрямую, и посчитаем эрмитово сопряженный оператор $\hat{\varphi}^+$:
 	\begin{equation}
-		\varphi^+ = (\hat{p}_\alpha \hat{x}_\alpha)^+ = \hat{x}_\alpha \hat{p}_\alpha = \hat{p}_\alpha \hat{x}_\alpha + \big[\hat{p}_\alpha, \hat{x}_\alpha \big] = \hat{p}_\alpha \hat{x}_\alpha - i\hbar \delta_{\alpha\alpha} = \hat{p}_\alpha \hat{x}_\alpha - 3i\hbar
+		\varphi^+ = (\hat{p}_\alpha \hat{x}_\alpha)^+ = \hat{x}_\alpha \hat{p}_\alpha = \hat{p}_\alpha \hat{x}_\alpha - \big[\hat{p}_\alpha, \hat{x}_\alpha \big] = \hat{p}_\alpha \hat{x}_\alpha + i\hbar \delta_{\alpha\alpha} = \hat{p}_\alpha \hat{x}_\alpha + 3i\hbar
 	\end{equation}
-	Как видно, напрямую сопоставленный оператор неэрмитов; однако, если взять оператор $\hat{\varphi} = \hat{p}_\alpha \hat{x}_\alpha - \frac{3}{2}i\hbar$, то такой оператор является эрмитовым. При переходе к классической механике ($\hbar \to 0$) введенный оператор переходит в величину $\varphi$, следовательно, введенный таким образом оператор соответствует заданной величине.
+	Как видно, напрямую сопоставленный оператор неэрмитов; однако, если взять оператор $\hat{\varphi} = \hat{p}_\alpha \hat{x}_\alpha + \frac{3}{2}i\hbar$, то такой оператор является эрмитовым. При переходе к классической механике ($\hbar \to 0$) введенный оператор переходит в величину $\varphi$, следовательно, введенный таким образом оператор соответствует заданной величине.
+	
+	Канонически верным оператором, который можно сопоставить величине $\textbf{pr}$, является следующий оператор:
+	\begin{equation}
+		\hat{\varphi} = \frac{\hat{p}_\alpha \hat{x}_\alpha + \hat{x}_\alpha \hat{p}_\alpha}{2}
+	\end{equation}
+	Этот оператор автоматически является эрмитовым и при предельном переходе к классической механике дает исходную величину $\textbf{pr}$.
 	
 	\item \textit{Что определяет выражение }$\braket{\textbf{r}|\Psi}$\textit{ = ?}
 	
@@ -248,6 +252,7 @@
 	\end{equation}
 	
 	\item \textit{Для оператора импульса  $\hat{\textbf{p} } \ket{\textbf{p}_0} = \ ?$}
+	
 	Аналогично оператору координаты:
 	\begin{equation}
 		\hat{\textbf{p}}\ket{\textbf{p}_0} = \textbf{p}_0 \ket{\textbf{p}_0}
@@ -403,7 +408,7 @@
 	\end{equation}
 	\item \textit{Чему равен коммутатор $[\hat{\boldsymbol{p}},U(\boldsymbol{r})]$?}
 	\begin{equation}
-		[\hat{\boldsymbol{p}},U(\boldsymbol{r})]=i\hbar\nabla U(\boldsymbol{r})
+		[\hat{\boldsymbol{p}},U(\boldsymbol{r})]=-i\hbar\nabla U(\boldsymbol{r})
 	\end{equation}
 	\item \textit{Чему равен коммутатор $[\hat{l}_{x},\hat{l}_{y}]$?}
 	\begin{equation}
@@ -705,6 +710,7 @@
 	\end{enumerate}
 
 {\center{\section*{Квантовая механика, часть 2}}}
+
 \subsection*{Квазиклассика}
 	\begin{enumerate}
 		\item \textit{Представление волновой функции частицы через квантовое действие.}
@@ -858,4 +864,142 @@ D\text{\ensuremath{\approx}}\exp\{-\frac{2}{\hbar}\int_{a}^{b}|p(q)|dq\}
 	\end{enumerate}
 	
 \subsection*{Стационарная теория возмущений}
+	\begin{enumerate}
+		\item \textit{Формулировка задачи стационарной теории возмущений.}
+		
+		Теория возмущений применяется для приближенного решения задач, которые не получается посчитать явно. Суть состоит в следующем: пусть возможно следующее разделение гамильтониана:
+		\begin{equation}
+			\hat{H} = \hat{H}_0 + \hat{V}
+		\end{equation}
+		и для оператора $\hat{H}_0$ задача решается. Тогда оператор $\hat{V}$ называют \textit{возмущением}. Далее решение стационарного уравнения ищется в следующем виде:
+		\begin{equation}
+			\ket{\psi_n} = \sum\limits_{k} c_k^{(n)} \ket{\psi_k^{(0)}} \label{disturbanceVectors}
+		\end{equation}
+		где $\ket{\psi_k^{(0)}}$ - собственные векторы оператора $\hat{H_0}$. Подставим волновую функцию в стационарное уравнение:
+		\begin{equation}
+			\sum\limits_{k}c_k^{(n)}\big(E_k^{(n)} \ket{\psi_k^{(0)}} + \hat{V}\ket{\psi_k^{(0)}}\big) = \sum\limits_{k}c_k^{(n)}E_k \ket{\psi_k^{(0)}}
+		\end{equation}
+		Умножим скалярно на $\bra{\psi_m^{(0)}}$:
+		\begin{equation}
+			\sum\limits_{k}c_k^{(n)}\big(E_k^{(n)} \delta_{km} + V_{km}\big) = \sum\limits_{k}c_k^{(n)}E_k \delta_{km}
+		\end{equation}
+		где $V_{nm}$ - матричный элемент оператора $\hat{V}$. Перенесем все слагаемые в левую часть:
+		\begin{equation}
+			\sum\limits_{k}c_k^{(n)}\big(V_{km} - (E_k^{(n)} - E_k) \delta_{km}\big) = 0
+		\end{equation}
+		Из этого уравнения находятся поправки к уровням энергии.
+		
+		\item \textit{Критерий применимости теории возмущений.}
+		
+		Ряд в формуле~\eqref{disturbanceVectors} может не сходиться. Обычно поправку к имеющимся состояниям ищут в виде:
+		\begin{equation}
+			\ket{\psi_n} = \ket{\psi_n^{(0)}} + \ket{\delta \psi_n}
+		\end{equation}
+		где $\braket{\psi_n^{(0)}|\delta \psi_n} = 0$. Для того, чтобы результаты приближенного вычисления слабо отличались от точного решения, необходимо, чтобы поправка была мала:
+		\begin{equation}
+			\|\ket{\delta \psi_n}\| \ll 1
+		\end{equation}
+		
+		\item \textit{Поправка первого порядка к уровням энергии для невырожденного спектра.}
+		
+		\begin{equation}
+			E_{n}^{(1)} = V_{nn}
+		\end{equation}
+		\item \textit{Поправки к состояниям невырожденного спектра в первом порядке теории возмущений.}
+		
+		\begin{equation}
+			\ket{\delta\psi_n^{(1)}} = \sum\limits_{m\neq n} \frac{V_{mn}}{E_n^{(0)} - E_m^{(0)}} \ket{\psi_m^{(0)}}
+		\end{equation}
+		
+		\item \textit{Поправка второго порядка к уровням энергии для невырожденного спектра.}
+		
+		\begin{equation}
+			E_n^{(2)} = \sum\limits_{m\neq n} \frac{|V_{mn}|^2}{E_n^{(0)} - E_m^{(0)}}
+		\end{equation}	
+		
+		\item \textit{Как изменится энергия основного невырожденного уровня системы, при помещении ее во внешнее поле?}	
+		
+		\item \textit{Постановка стационарной теории возмущений в случае вырожденного энергетического спектра.}
+		При вырожденном спектре гамильтониана задача ставится несколько иначе:
+		\begin{equation}
+			\hat{H}_0 \ket{\psi^{(0)}_{n,\alpha}} = E_n^{(0)}\ket{\psi^{(0)}_{n,\alpha}}
+		\end{equation}
+		где $\alpha$ - параметр вырождения. Для такой ситуации выбор нулевых собственных векторов неоднозначен, так как любая комбинация вида
+		\begin{equation}
+			\ket{\psi^{(0)}_{n,\alpha}} = \sum\limits_{\beta} C_\beta \ket{\psi^{(0)}_{n,\beta}} 
+		\end{equation}
+		удовлетворяет уравнению Шредингера. Трюк состоит в том, чтобы найти такую линейную комбинацию, которая удовлетворяла бы критерию применимости стационарной теории возмущений. Найдем их, подставляя в уравнение Шредингера:
+		\begin{equation}
+			\sum\limits_{\beta} C_\beta \Big( \hat{V} - (E - E_n^{(0)}) \Big) \ket{\psi_{n,\beta}^{(0)}} = 0
+		\end{equation}
+		Домножив скалярно слева на $\bra{\psi_{n,\beta}^{(0)}}$, получаем:
+		\begin{equation}
+			\sum\limits_{\beta} C_\beta \Big( V_{\beta\alpha} - (E - E_n^{(0)})\delta_{\beta\alpha} \Big) = 0
+		\end{equation}
+		Это уравнение имеет нетривиальное решение тогда и только тогда, когда матрица $V_{\beta\alpha} - \varepsilon \delta_{\beta\alpha}$ вырождена. Уравнение на параметр $\varepsilon$, при котором матрица вырождена, называется \textit{секулярное уравнение}:
+		\begin{equation}
+			\det \|V_{\beta\alpha} - \varepsilon \delta_{\beta\alpha}\| = 0
+		\end{equation}
+		
+		\item \textit{Правильные функции нулевого приближения и секулярное уравнение в теории возмущений.}
+		
+		Секулярное уравнение было определено выше. Правильные волновые функции это собственные векторы матрицы $V_{\beta\alpha} - \varepsilon \delta_{\beta\alpha}$.
+		
+		\item \textit{Уравнение для определения функции Грина стационарного уравнения Шредингера.}
+		
+		\begin{equation}
+			(\hat{H} - E) G_E(\textbf{r}, \textbf{r}') = \delta(\textbf{r} - \textbf{r}')
+		\end{equation}
+		\item \textit{Определение функции Грина стационарного уравнения Шредингера как представление оператора.}
+		
+		Функцию Грина можно считать матрицей некоторого оператора:
+		\begin{equation}
+			G_E(\textbf{r}, \textbf{r}') = \braket{\textbf{r}|\hat{G}_E|\textbf{r}'}
+		\end{equation}
+		Найдем явный вид этого оператора:
+		\begin{equation}
+			\braket{\textbf{r}|(\hat{H} - E)\hat{G}_E | \textbf{r}'} = \delta (\textbf{r} - \textbf{r}') = \braket{\textbf{r}|\hat{1}| \textbf{r}'}
+		\end{equation}
+		Следовательно, оператор $\hat{G}_E$ равен:
+		\begin{equation}
+			\hat{G}_E = (\hat{H} - E)^{-1} = \frac{1}{\hat{H} - E}
+		\end{equation}
+		
+		\item \textit{Ряд теории возмущений для функции Грина стационарного уравнения Шредингера.}
+		
+		Переходя к теории возмущений, зная оператор Грина невозмущенной задачи $\hat{G}^{(0)}$, можно переписать выражение для $\hat{G}$:
+		\begin{equation}
+			\hat{G} = (\hat{H}_0 - E + \hat{V})^{-1} = \hat{G}_0 (\hat{1} - \hat{V}\hat{G})
+		\end{equation}
+		
+		
+		\item \textit{Что определяют полюса функции Грина стационарного уравнения Шредингера?}				
+		
+		
+		\clearpage		
+		Чтобы понять, каким образом поправки классифицируются по порядкам, необходимо ввести оператор Грина для данной задачи. В обычных дифференциальных задачах функция Грина позволяет найти частное решение для неоднородного дифференициального уравнения
+		\begin{equation}
+			\psi_{\text{ч}}(\textbf{r}) = \int G(\textbf{r},\textbf{r}') f(\textbf{r}') d\textbf{r}'
+		\end{equation}
+		для уравнения
+		\begin{equation}
+			\hat{H} \psi = f(\textbf{r})
+		\end{equation}
+		Функция Грина определяется из уравнения
+		\begin{equation}
+			\hat{H}G = \delta(\textbf{r}-\textbf{r}')
+		\end{equation}
+		Для задачи теории возмущения стационарное уравнение Шредингера переписывается в следующем виде:
+		\begin{equation}
+			\Big(\hat{H}_0 - E \Big)\ket{\psi} = - \hat{V}\ket{\psi}
+		\end{equation}
+		Найдем выражение для оператора Грина:
+		\begin{equation}
+			\braket{\textbf{r}| (\hat{H}_0 - E) \hat{G}|\textbf{r}'} = \delta(\textbf{r}-\textbf{r}') = \braket{\textbf{r}|\hat{1}|\textbf{r}'}
+		\end{equation}
+		Следовательно, явный вид оператора Грина
+		\begin{equation}
+			\hat{G} = (\hat{H}_0 - E)^{-1} = \frac{1}{\hat{H}_0 - E}
+		\end{equation}
+	\end{enumerate}
 \end{document}
