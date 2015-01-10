@@ -608,7 +608,7 @@
 		\end{equation}		
 		\item \textit{$\hat{l}_\pm \ket{l, m} = \ ?$}
 		\begin{equation}
-			\hat{l}_\pm\ket{l,m}=\sqrt{(l\mp m)(l\pm m-1)}\ket{l,m\pm1}
+			\hat{l}_\pm\ket{l,m}=\sqrt{(l\mp m)(l\pm m+1)}\ket{l,m\pm1}
 		\end{equation}	
 	\end{enumerate}
 	
@@ -973,33 +973,419 @@ D\text{\ensuremath{\approx}}\exp\{-\frac{2}{\hbar}\int_{a}^{b}|p(q)|dq\}
 		\end{equation}
 		
 		
-		\item \textit{Что определяют полюса функции Грина стационарного уравнения Шредингера?}				
+		\item \textit{Что определяют полюса функции Грина стационарного уравнения Шредингера?}	
 		
+		\begin{equation}
+			\bra\{n\}\hat{G}_{E}\ket{n'}=\bra{n}(\hat{H}-E)^{-1}\ket{n'}=\delta_{n,n'}\frac{1}{E_{n}-E}
+		\end{equation}
+		Это функция Uрина в энергетическом представлении. Отсюда видно,
+что её полюсы определяют спектр гамильтониана.
+
+		\item \textit{Функция Грина в энергетическом представлении.}
 		
-		\clearpage		
-		Чтобы понять, каким образом поправки классифицируются по порядкам, необходимо ввести оператор Грина для данной задачи. В обычных дифференциальных задачах функция Грина позволяет найти частное решение для неоднородного дифференициального уравнения
+		Смотри предыдущий вопрос.
+		
+		\item \textit{Выражение для поправок к состояниям в теории возмущений с помощью функции Грина.}
+		
 		\begin{equation}
-			\psi_{\text{ч}}(\textbf{r}) = \int G(\textbf{r},\textbf{r}') f(\textbf{r}') d\textbf{r}'
+			\ket\{\delta\psi^{(n)}\}=\big(-\hat{G^{(0)}}\hat{V}\big)^{n}\ket{\psi^{(0)}}
 		\end{equation}
-		для уравнения
+		
+		\item \textit{Выражение для поправок к уровням энергии в теории возмущений с помощью функции Грина.}
+		
+		\begin{gather}
+			\delta E_{n}^{(1)}=\bra{n}\hat{V}\ket{n} \\
+\delta E_{n}^{(2)}=\bra{n}\hat{V}(-\hat{G^{(0)}})\hat{V}\ket{n}
+\\
+\delta E_{n}^{(3)}=\bra{n}\hat{V}(-\hat{G^{(0)}})\hat{V}(-\hat{G^{(0)}})\hat{V}\ket{n}
+		\end{gather}
+		
+		\item \textit{Функция Грина стационарного уравнения Шредингера в координатном представлении для дискретного спектра.}
+		
 		\begin{equation}
-			\hat{H} \psi = f(\textbf{r})
+			\bra{\boldsymbol{r}}\hat{G}\ket{\boldsymbol{r}'}=\sum_{n}\frac{\psi_{\text{n}}^{*}(\boldsymbol{r}')\psi_{n}(\boldsymbol{r})}{E_{n}-E}
 		\end{equation}
-		Функция Грина определяется из уравнения
+		
+		\item \textit{Функция Грина стационарного уравнения Шредингера в случае непрерывного спектра.}		
+		
 		\begin{equation}
-			\hat{H}G = \delta(\textbf{r}-\textbf{r}')
+			\bra{\boldsymbol{r}}\hat{G}\ket{\boldsymbol{r'}}=\int\frac{\psi_{\nu}^{*}(\boldsymbol{r}')\psi_{\nu}(\boldsymbol{r})}{E_{\nu}-E\pm i\gamma}d\nu
 		\end{equation}
-		Для задачи теории возмущения стационарное уравнение Шредингера переписывается в следующем виде:
+		
+		\item \textit{Функция Грина свободной частицы.}	
+		
 		\begin{equation}
-			\Big(\hat{H}_0 - E \Big)\ket{\psi} = - \hat{V}\ket{\psi}
+			\hat{G}^{(\pm)}(\boldsymbol{r,r')}=\frac{m}{2\pi\hbar^{2}|r-r'|}\exp\{\pm i|r-r'|\sqrt{\frac{2mE}{\hbar^{2}}}\}
 		\end{equation}
-		Найдем выражение для оператора Грина:
+		
+		$+$ отвечает расходящейся волне, $-$ отвечает сходящейся волне
+		
+		\item \textit{Основное интегральное уравнение для определения волновой функции в случае непрерывного спектра.}
+		
 		\begin{equation}
-			\braket{\textbf{r}| (\hat{H}_0 - E) \hat{G}|\textbf{r}'} = \delta(\textbf{r}-\textbf{r}') = \braket{\textbf{r}|\hat{1}|\textbf{r}'}
+			\psi(\boldsymbol{r})=A\exp\{i\boldsymbol{kr}\}+\frac{m}{2\pi\hbar^{2}}\int\frac{\exp\{ik|r-r'|\}}{|\boldsymbol{r-r'}|}\hat{V}(\boldsymbol{r'})\psi(\boldsymbol{r')}d\boldsymbol{r'}
 		\end{equation}
-		Следовательно, явный вид оператора Грина
+		
+		\item \textit{Асимптотический вид волновой функции в задаче о рассеянии.}
+		
 		\begin{equation}
-			\hat{G} = (\hat{H}_0 - E)^{-1} = \frac{1}{\hat{H}_0 - E}
+			\psi(\boldsymbol{r)}\approx A\exp\{i\boldsymbol{kr}\}+f(\theta,\phi)\frac{e^{ikr}}{r}
 		\end{equation}
+		
+		\item \textit{Определение дифференциального сечения рассеяния и его связь с амплитудой рассеяния.}
+		
+		Дифференциальное сечение рассеяния - вероятность пройти рассеянной
+частице в единицу времени через элемент телесного угла.
+		\begin{equation}
+			\frac{d\sigma}{d\Omega}=|f(\theta,\phi)^{2}|
+		\end{equation}
+		
+		\item \textit{Борновское приближение в теории рассеяния.}
+
+		Борновское приближение - первый порядок теории возмущения, применнный
+к задаче рассеяния на неком потенциале. Критерий применимости -  тот же
+что и в теории возмущения
+
+		\begin{equation}
+			|\ket{\delta\psi}|=\big|\frac{m}{2\pi\hbar^{2}}\int\frac{\exp\{ik|\boldsymbol{r-r'}|\}}{|\boldsymbol{r}-\boldsymbol{r}'|}\hat{V}(\boldsymbol{r')}\exp\{i\boldsymbol{kr'}\}dr'\big|\ll1
+		\end{equation}
+		
+		\item \textit{Критерий применимости борновского приближения для рассеяния медленных частиц.}
+		
+		Медленные частицы:
+		
+		\begin{equation}
+			\lambda\gg a,\ \exp\{i\boldsymbol{kr'}\}\approx1,\ \exp\{ik|\boldsymbol{r-r'}|\}\approx1
+		\end{equation}
+		
+		Критерий:
+		\begin{equation}
+			V_{0}\ll\frac{\hbar^{2}}{ma^{2}}
+		\end{equation}
+		
+		\item \textit{Критерий применимости борновского приближения для рассеяния быстрых частиц.}
+		
+		Быстрые частицы:
+		
+		\begin{equation}
+			\lambda\ll a
+		\end{equation}
+		
+		Критерий:
+		\begin{equation}
+			V_{0}\ll\frac{\hbar^{2}}{ma^{2}}ka
+		\end{equation}
+		
+		\item \textit{Как зависит от углов дифференциальное сечение рассеяния медленных частиц в борновском приближении?}
+		
+		\begin{equation}
+			f(\theta)=-\frac{2m}{\hbar^{2}}\int_{0}^{+\infty}V(r)\frac{\sin(qr)}{q}rdr,\boldsymbol{q=k'-k},q=2k\sin\frac{\theta}{2}
+		\end{equation}
+		
+		Для медленных частиц:
+		\begin{equation}
+			f(\theta)\approx const
+		\end{equation}
+		
+		\item \textit{ Особенности угловой зависимости дифференциального сечения рассеяния быстрых частиц в борновском приближении.}
+		
+		Для быстрых частиц в интеграле нужно учитывать только
+		\begin{equation}
+			qa\leq1, \ 2ka\sin\frac{\theta}{2},\ \theta\leq\frac{1}{ka}
+		\end{equation}
+		
 	\end{enumerate}
+	
+	
+{\center{\section*{Квантовая механика, часть 2}}}
+\subsection*{Многочастичная теория}
+\begin{enumerate}
+	\item \textit{Как можно записать вектор состояния системы, состоящей из двух невзаимодействующих подсистем, находящихся в состояниях $\ket{\psi_1}$ и $\ket{\psi_2}$?}	
+	
+	Вектор состояния ситсемы определяется как тензорное произведение состояний подсистем:
+	\begin{equation}
+		\ket{\psi} = \ket{\psi_1} \otimes \ket{\psi_2} = \ket{\psi_1} \ket{\psi_2}
+	\end{equation}
+	Знак тензорного произведения обычно опускается.
+	
+	\item \textit{Замкнутая система состоит из двух невзаимодействующих подсистем, обладающих моментами $l_1$ и $l_2$ соответственно. Сколько линейно независимых векторов определяют состояния с определенным суммарным моментом?}	
+	
+	Если $l_2 \leq l_1$, то число векторов с определенным сумарным моментом равно $2l_2 + 1$. Доказательство этого факта приводится ниже при подсчете возможных значений суммарного момента.
+	
+	\item \textit{Замкнутая система состоит из двух невзаимодействующих подсистем, обладающих моментами $l_1$ и $l_2$ соответственно. Какими квантовыми числами определяется состояние системы с заданным суммарным моментом $L$? Записать дираковский вектор состояния.}	
+	
+	Момент каждой системы по отдельности сохраняется, значит $l_1, l_2$ являются квантовыми числами. Для заданного суммарного момента $L$ можно одновременно измерить его проекцию на выбранную ось. Таким образом, дираковский вектор состояния определяется следующим образом:
+	
+	\begin{equation}
+		\ket{\psi} = \ket{l_1, l_2, L, M}
+	\end{equation}
+	
+	\item \textit{Какие значения может принимать суммарный момент $L$ системы, состоящей из двух подсистем, обладающих моментами $l_1$ и $l_2$ соответственно ?}
+	
+	Суммарный момент $L$ принимает все значения, которые находятся между моментом, когда моменты систем сонаправлены, и моментом, когда моменты систем противоположно направленны друг к другу. Так как момент квантуется с шагом $1$, то возможные значения момента $L$ равны:
+	\begin{equation}
+		|l_1 - l_2| \leq L \leq l_1 + l_2
+	\end{equation}
+	
+	\item \textit{Пусть $\textbf{L} = \textbf{l}_1 + \textbf{l}_2$. Показать, что коммутатор $[\hat{L}_z,\hat{\textbf{L}}^2] = 0$.}
+	
+	\begin{equation}
+	\begin{split}
+		[\hat{L}_z,\hat{\textbf{L}}^2] = [\hat{l}_{1z} + \hat{l}_{2z}, (\hat{l}_{1\alpha} + \hat{l}_{2\alpha})(\hat{l}_{1\alpha} + \hat{l}_{2\alpha})] = [\hat{l}_{1z} + \hat{l}_{2z}, \hat{\textbf{l}}_{1}^2 + \hat{\textbf{l}}_{2}^2 + 2\hat{l}_{1\alpha}\hat{l}_{2\alpha}] = \\
+		= 2[ \hat{l}_{1z}, \hat{l}_{1\alpha}\hat{l}_{2\alpha}] + 2[ \hat{l}_{2z}, \hat{l}_{1\alpha}\hat{l}_{2\alpha}] = 2[ \hat{l}_{1z}, \hat{l}_{1\alpha}]\hat{l}_{2\alpha} + 2\hat{l}_{1\alpha}[ \hat{l}_{2z}, \hat{l}_{2\alpha}] = 2 e_{z\alpha\beta} \big( \hat{l}_{1\beta} \hat{l}_{2\alpha} + \hat{l}_{1\alpha} \hat{l}_{2\beta}\big ) = 0
+	\end{split}
+	\end{equation}
+	
+	\item \textit{Как с помощью коэффициентов Клебша-Гордана определить состояние системы с полным моментом $J$, если известны состояния подсистем $\ket{j_1, m_1}$ и $\ket{j_2, m_2}$?}
+	
+	\begin{equation}
+		\ket{j_1, j_2, J, M} = \sum\limits_{m_1 + m_2 = M} C^{J, M}_{j_1,m_1;,j_2,m_2} \ket{j_1, m_1}\ket{j_2, m_2}
+	\end{equation}
+	По сути, коэффициенты Клебша-Гордана это матрица перехода из базиса состояний с определенными проекциями подсистем к базису состояний с определенным суммарным моментом и его проекциейю
+	
+	\item \textit{Чему равно выражение $\sum\limits_{m1,m2}\braket{j_1 j_2; J M|j_1 m_1} \ket{j_2 m_2} \bra{j_2 m_2} \braket{j_1 m_1|j_1 j_2; J' M'}$?}
+	
+	\begin{equation}
+		\sum\limits_{m1,m2}\braket{j_1 j_2; J M|j_1 m_1} \ket{j_2 m_2} \bra{j_2 m_2} \braket{j_1 m_1|j_1 j_2; J' M'} = \delta_{JJ'}\delta_{MM'}
+	\end{equation}
+	
+	\item \textit{Чему равно выражение $\sum\limits_{J,M} \bra{j_2 m_2} \braket{j_1 m_1|j_1 j_2; J M } \braket{j_1 j_2; J M |j_1 m_1'} \ket{j_2 m_2'}$?}
+	
+	\begin{equation}
+		\sum\limits_{J,M} \bra{j_2 m_2} \braket{j_1 m_1|j_1 j_2; J M } \braket{j_1 j_2; J M |j_1 m_1'} \ket{j_2 m_2'} = \delta_{m_1 m_1'} \delta_{m_2 m_2'}
+	\end{equation}
+	\item \textit{В каком виде можно представить состояние $N$ связанных гармонических осцилляторов?}
+	
+	Линейными преобразованиями операторов координат любую систему связных гармонических осцилляторов можно свести к системе несвязных осцилляторов:
+	\begin{equation}
+	\frac{1}{2} \sum\limits_{k} \hat{p}^2_k + \frac{1}{2} \sum\limits_{k,l} U_{kl}\hat{q}_k\hat{q}_l \to \frac{1}{2} \sum\limits_{\alpha} \hat{p}^2_\alpha + \hat{q}^2_\alpha
+	\end{equation}
+	Таким образом, состояние системы осцилляторов можно представить как прямое произведение состояний осцилляторов, которые характеризуются одном квантовым числом:
+	\begin{equation}
+		\ket{\psi} = \bigotimes\limits_{\alpha = 1}^N \ket{n_\alpha}
+	\end{equation}
+	
+	\item \textit{В каком виде можно представить гамильтониан системы связанных гармонических осцилляторов?}
+	
+	Смотри предыдущий вопрос.
+	
+	\item \textit{Как определяется спектр системы связанных гармонических осцилляторов?}
+	
+	Исходя из вида гамильтониана системы связных осцилляторов
+	\begin{equation}
+		\hat{H} = \sum\limits_{\alpha} \hbar \omega_\alpha \Big( \hat{a}^+_\alpha \hat{a}_\alpha + \frac{1}{2} \Big)
+	\end{equation}
+	получаем спектр системы:
+	\begin{equation}
+		E = \sum\limits_{\alpha} \hbar \omega_\alpha \Big( n_\alpha + \frac{1}{2} \Big)
+	\end{equation}
+	
+	\item \textit{Как с помощью повышающих операторов можно получить произвольное состояние системы гармонических осцилляторов из основного?}
+
+	Аналогично одномерному осциллятору:
+	\begin{equation}
+		\ket{\psi} = \prod\limits_{\alpha} \frac{(\hat{a}^+_\alpha)}{\sqrt{n_\alpha!}} \ket{00...0}
+	\end{equation}		
+	
+	\item \textit{Пусть $\Psi(x_1, x_2;t)$ волновая функция системы двух тождественных частиц, чему равен результат действия на нее оператора перестановки частиц $\hat{P}\Psi(x_1, x_2;t) = \ ?$}
+	
+	Волновая функция системы тождественных частиц всегда является собственной функцией оператора перестановки, следовательно
+	\begin{equation}
+		\hat{P}\Psi(x_1, x_2;t) = \Psi(x_2, x_1;t) = \pm \Psi(x_1, x_2;t)
+	\end{equation}
+	Знак в равенстве определяется типом системы (бозе или ферми).
+	
+	\item \textit{В каком виде можно записать гамильтониан системы двух взаимодействующих тождественных частиц?}
+	
+	\begin{equation}
+		\hat{H}(1,2) = \frac{\hat{\textbf{p}}_1^2}{2m} + \frac{\hat{\textbf{p}}_2^2}{2m} + U(\hat{\textbf{r}}_1) + U(\hat{\textbf{r}}_2) + V(\hat{\textbf{r}}_1, \hat{\textbf{r}}_2)
+	\end{equation}
+	Оператор $\hat{V}$ симметричен.
+	
+	\item \textit{Как для системы двух ферми-частиц связаны между собой волновые функции $\Psi(x_1, x_2;t)$ и $\Psi(x_2, x_1;t)$?}
+	\begin{equation}
+		\Psi(x_1, x_2;t) = -\Psi(x_2, x_1;t)
+	\end{equation}
+	
+	\item \textit{Как для системы двух бозе-частиц связаны между собой волновые функции $\Psi(x_1, x_2;t)$ и $\Psi(x_2, x_1;t)$?}
+	
+	\begin{equation}
+		\Psi(x_1, x_2;t) = \Psi(x_2, x_1;t)
+	\end{equation}
+	
+	\item \textit{В каком виде можно представить вектор состояния системы N невзаимодействующих тождественных частиц? Как определяется полный набор квантовых чисел?}
+	
+	Аналогично двум частицам	
+	\begin{equation}
+		\ket{\psi} = \bigotimes\limits_{n=1}^N \ket{\psi_n}
+	\end{equation}
+	Полный набор квантовых чисел равен объединению наборов квантовых чисел каждой частицы.
+	
+	\item \textit{Как можно записать волновую функцию $N$ невзаимодействующих ферми-частиц?}
+	\begin{equation}
+		\braket{\textbf{r}_1...\textbf{r}_N|\psi_1 ... \psi_N} = \frac{1}{\sqrt{N!}}\det \|\psi_{n_i}(\textbf{r}_k) \ket{m_i} \|
+	\end{equation}
+	где $\psi_{n_i}(\textbf{r})$ - волновые функции частиц, $\ket{m_i}$ - спиновые вектора.
+	
+	\item \textit{Как можно записать волновую функцию $N$ невзаимодействующих бозе-частиц?}
+	
+	\begin{equation}
+		\braket{\textbf{r}_1...\textbf{r}_N|\psi_1 ... \psi_N} = \frac{1}{\sqrt{N!}}\text{perm} \|\psi_{n_i}(\textbf{r}_k) \ket{m_i} \|
+	\end{equation}
+	Перманент вычисляется аналогично определителю, только в сумме отсутствуют $-1$.
+	
+	\item \textit{Для системы двух невзаимодействующих ферми-частиц записать волновую функцию с определенным суммарным спином $S$.}
+	
+	Состояние должно быть антисимметричным, поэтому
+	\begin{equation}
+		\Psi(\textbf{r}_1, \textbf{r}_2) = \frac{1}{\sqrt{2}}\big( \psi_1(\textbf{r}_1) \psi_2(\textbf{r}_2) + (-1)^S \psi_2(\textbf{r}_1) \psi_1(\textbf{r}_2) \big)
+	\end{equation}
+	
+	Далее будет показано, векторы с определенным спином $S$ имеют определенную четность
+	
+	\item \textit{Для системы двух невзаимодействующих бозе-частиц записать волновую функцию с определенным суммарным спином $S$.}
+	
+	Волновая функция не отличается от волновой функции для ферми-частиц.
+	
+	\item \textit{Записать спиновые векторы состояния системы двух электронов, обладающих суммарным спином $S = 1$.}
+	
+	\begin{gather}
+		\ket{1,1} = \ket{+}\ket{+} \\
+		\ket{1,0} = \frac{1}{\sqrt{2}}( \ket{-}\ket{+} + \ket{+}\ket{-}) \\
+		\ket{1,-1} = \ket{-}\ket{-}
+	\end{gather}
+	
+	\item \textit{Записать спиновый вектор состояния системы двух электронов, обладающих суммарным спином $S = 0$.}
+	
+	\begin{equation}
+		\ket{0,0} = \frac{1}{\sqrt{2}}( \ket{-}\ket{+} - \ket{+}\ket{-}) 
+	\end{equation}
+	
+	\item \textit{Система двух электронов находится в спиновом состоянии, которое описывается вектором $\ket{+}\ket{+}$. Построить вектор состояния $\ket{S = 1, M_S = 0}$, описывающий cостояние с суммарнымспином $S = 1$.}
+	
+	Действуя оператором $\hat{S}_- = \hat{s}_{1-} + \hat{s}_{2-}$, получаем один из векторов из предыдущих вопросов.
+		
+	\item \textit{Система двух электронов находится в спиновом состоянии, которое описывается вектором $\ket{+} \ket{-}$. Представить его в виде суперпозиции состояний с определенным суммарным спином $S$.}
+	
+	\begin{equation}
+		\ket{+} \ket{-} = \frac{1}{\sqrt{2}} \big( \ket{1,0} - \ket{0,0} \big)
+	\end{equation}
+	
+	\item \textit{Координатная часть волновой функции двух электронов имеет вид
+$\frac{1}{\sqrt{2}}\big( \psi_1(\textbf{r}_1) \psi_2(\textbf{r}_2) - \psi_2(\textbf{r}_1) \psi_1(\textbf{r}_2) \big)$ Чему равен суммарный спин $S$?}
+
+	$S = 1$, что следует из вопроса №20.
+	
+	\item \textit{Координатная часть волновой функции двух электронов имеет вид
+$\frac{1}{\sqrt{2}}\big( \psi_1(\textbf{r}_1) \psi_2(\textbf{r}_2) + \psi_2(\textbf{r}_1) \psi_1(\textbf{r}_2) \big)$ Чему равен суммарный спин $S$?}
+
+	$S=0$.	
+	
+	\item \textit{Как определяется обменный интеграл для двух слабо взаимодействующих между собой электронов?}
+	
+	\begin{equation}
+		J = \int \psi_{n_1}^*(\textbf{r}_1) \psi_{n_2}(\textbf{r}_1) \psi_{n_2}^*(\textbf{r}_2) \psi_{n_2}(\textbf{r}_2) V(\textbf{r}_1 - \textbf{r}_2) d\textbf{r}_1 d\textbf{r}_2
+	\end{equation}
+	
+	\item \textit{Записать результат действия оператора рождения на вектор $N$-частичного состояния тождественных частиц $a^+(\varphi)\ket{\psi_1, . . . , \psi_N} = \ ?$}
+	
+	\begin{equation}
+		a^+(\varphi)\ket{\psi_1, . . . , \psi_N} = \ket{\varphi,\psi_1, . . . , \psi_N}
+	\end{equation}
+	
+	\item \textit{Записать результат действия оператора уничтожения на вектор N-частичного состояния тождественных ферми-частиц $a(\varphi)\ket{\psi_1, . . . , \psi_N} = \ ?$}
+	
+	\begin{equation}
+		a(\varphi)\ket{\psi_1, . . . , \psi_N} = \sum\limits_{k} (-1)^{k-1} \braket{\varphi|\psi_k} \ket{\psi_1,...,\psi_{k-1},\psi_{k+1},...,\psi_N}
+	\end{equation}
+	
+	\item \textit{Записать результат действия оператора уничтожения на вектор N-частичного состояния тождественных бозе-частиц $a(\varphi)\ket{\psi_1, . . . , \psi_N} = \ ?$}
+	
+	\begin{equation}
+		a(\varphi)\ket{\psi_1, . . . , \psi_N} = \sum\limits_{k} \braket{\varphi|\psi_k} \ket{\psi_1,...,\psi_{k-1},\psi_{k+1},...,\psi_N}
+	\end{equation}
+	
+	\item \textit{Чему равен коммутатор для системы тождественных бозе-частиц \\$a^+(\varphi_1)a^+(\varphi_2) - a^+(\varphi_2)a^+(\varphi_1)?$}
+	
+	\begin{equation}
+		[a^+(\varphi_1), a^+(\varphi_2)] = 0
+	\end{equation}
+	
+	\item \textit{Чему равен коммутатор для системы тождественных бозе-частиц \\$a(\varphi_1)a(\varphi_2) - a(\varphi_2)a(\varphi_1)?$}
+	
+	\begin{equation}
+		[a(\varphi_1), a(\varphi_2)] = 0
+	\end{equation}		
+	
+	\item \textit{Чему равен коммутатор для системы тождественных бозе-частиц \\$a(\varphi_1)a^+(\varphi_2) - a^+(\varphi_2)a(\varphi_1)?$}
+	
+	\begin{equation}
+		[a(\varphi_1), a^+(\varphi_2)] = \braket{\varphi_1|\varphi_2}
+	\end{equation}
+	
+	\item \textit{Чему равен антикоммутатор для системы тождественных ферми-частиц \\$a^+(\varphi_1)a^+(\varphi_2) + a^+(\varphi_2)a^+(\varphi_1)?$}
+	
+	\begin{equation}
+		a^+(\varphi_1)a^+(\varphi_2) + a^+(\varphi_2)a^+(\varphi_1) = 0
+	\end{equation}
+	
+	\item \textit{Чему равен антикоммутатор для системы тождественных ферми-частиц \\$a(\varphi_1)a(\varphi_2) + a(\varphi_2)a(\varphi_1)?$}
+	
+	\begin{equation}
+		a(\varphi_1)a(\varphi_2) - a(\varphi_2)a(\varphi_1) = 0
+	\end{equation}
+	
+	\item \textit{Чему равен антикоммутатор для системы тождественных ферми-частиц \\$a(\varphi_1)a^+(\varphi_2) + a^+(\varphi_2)a(\varphi_1)?$}
+	
+	\begin{equation}
+		a(\varphi_1)a^+(\varphi_2) - a^+(\varphi_2)a(\varphi_1) = \braket{\varphi_1|\varphi_2}
+	\end{equation}
+	
+	\item \textit{Чему равен антикоммутатор для системы тождественных ферми-частиц \\ $a_{\textbf{p}_1,\sigma} a^+_{\textbf{p}_2,\sigma'} + a^+_{\textbf{p}_2,\sigma'}a_{\textbf{p}_1,\sigma}$, где ${\textbf{p},\sigma}$ – состояние с определенным импульсом и проекцией спина?}
+	
+	\begin{equation}
+		a_{\textbf{p}_1,\sigma} a^+_{\textbf{p}_2,\sigma'} + a^+_{\textbf{p}_2,\sigma'}a_{\textbf{p}_1,\sigma} = \delta(\textbf{p}_1 - \textbf{p}_2)\delta_{\sigma\sigma'}
+	\end{equation}
+	
+	\item \textit{Чему равен антикоммутатор для системы тождественных бозе-частиц \\ $a_{\textbf{p}_1,\sigma} a^+_{\textbf{p}_2,\sigma'} - a^+_{\textbf{p}_2,\sigma'}a_{\textbf{p}_1,\sigma}$, где ${\textbf{p},\sigma}$ – состояние с определенным импульсом и проекцией спина?}
+	
+	\begin{equation}
+		a_{\textbf{p}_1,\sigma} a^+_{\textbf{p}_2,\sigma'} - a^+_{\textbf{p}_2,\sigma'}a_{\textbf{p}_1,\sigma} = \delta(\textbf{p}_1 - \textbf{p}_2)\delta_{\sigma\sigma'}
+	\end{equation}
+	
+	\item \textit{Для системы тождественных бозе-частиц определить результат действия оператора рождения на вектор состояния в пространстве чисел заполнения $a^+_\beta \ket{n_1, n_2, ...} = \ ?$}
+	
+	\begin{equation}
+		a^+_\beta \ket{n_1, n_2, ...} = \sqrt{n_\beta + 1} \ket{n_1, n_2, ..., n_\beta +1,...}
+	\end{equation}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}
+	
+	\item \textit{}		
+\end{enumerate}
+
 \end{document}
